@@ -28,6 +28,8 @@ Make it at 18/25 or more. Status: idea → brief → script → animate → done
 | | Missiles x Cookware | Corning's Pyroceram (a 1953 furnace accident) went into missile nose cones and CorningWare | idea | documented |
 | | Car windshields x Phone glass | Corning's 1960s Chemcor project became Gorilla Glass on the 2007 iPhone | idea | documented |
 | 003 | Atomic bomb x Non-stick pans | PTFE (Teflon, 1938) resisted uranium hexafluoride in the Manhattan Project before it coated pans | done | documented |
+| 004 | Steam engine x AI | Jevons paradox: Watt's fuel-saving engine came with more British coal use; cheaper AI tokens came with far more token use, and AI power demand now props up coal | animate | documented (AI side partly projection) |
+| | Silver hallmarks x Photo content credentials | both stamp who made a thing and who checked it, on the object itself (English hallmarking from about 1300; C2PA content credentials) | idea | check |
 | | Pencil x Nuclear reactor | graphite: pencil "lead", the moderator of Chicago Pile-1 (1942), the anode in Li-ion cells | idea | documented |
 | | Gun sights x Superglue | Harry Coover at Kodak found cyanoacrylate (1942) while making clear plastic gun sights | idea | documented |
 | | Carrots x TV screens | Reinitzer found liquid crystals (1888) in a compound made from carrots | idea | documented |

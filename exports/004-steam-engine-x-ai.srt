@@ -1,0 +1,64 @@
+1
+00:00:00,000 --> 00:00:02,697
+Watt's steam engine saved coal, and Britain
+
+2
+00:00:02,797 --> 00:00:05,169
+burned more. Cheaper AI does the same.
+
+3
+00:00:05,483 --> 00:00:09,258
+In 1769, James Watt patented a separate condenser, so
+
+4
+00:00:09,358 --> 00:00:12,402
+his engines needed less than half the coal.
+
+5
+00:00:12,716 --> 00:00:16,230
+Each job cost less coal. So mines, mills and trains
+
+6
+00:00:16,330 --> 00:00:20,339
+added engines. Britain's coal output grew over four times.
+
+7
+00:00:20,650 --> 00:00:23,392
+Economist William Jevons later described it:
+
+8
+00:00:23,492 --> 00:00:25,200
+cheaper use brings more use.
+
+9
+00:00:25,516 --> 00:00:29,291
+AI sells text in tokens, small word pieces. In two years,
+
+10
+00:00:29,391 --> 00:00:33,438
+their price at one quality level fell over two hundred times.
+
+11
+00:00:33,750 --> 00:00:37,005
+Each answer costs less. So apps and agents add AI.
+
+12
+00:00:37,105 --> 00:00:40,562
+Google's monthly tokens grew fifty times in one year.
+
+13
+00:00:40,866 --> 00:00:44,629
+Now AI feeds coal. Coal makes about 30 percent of data
+
+14
+00:00:44,729 --> 00:00:49,065
+center power, and some US utilities delay coal plant closures.
+
+15
+00:00:49,366 --> 00:00:53,533
+Experts expect data centers to use twice as much power this decade.
+
+16
+00:00:53,850 --> 00:00:57,888
+Each job became cheaper, and the total grew. Same trick, two worlds.
+
