@@ -99,8 +99,8 @@ package, use `vid uv add <package>` so uv keeps using the folder's cache.
 
 You need Windows 10 or 11 and Git. Then, in cmd (or PowerShell, with `.\vid`):
 
-1. `git clone https://github.com/adityasissodiya8/sametricktwice.git` and `cd sametricktwice`.
-   The repository is private: when Git asks, sign in as the GitHub account that owns it.
+1. `git clone https://github.com/adityasissodiya/sametricktwice.git` and `cd sametricktwice`.
+   The repository is public, so no sign-in is needed to clone it.
 2. `vid setup`. In one go it downloads the pinned portable tools (uv 0.12.23, FFmpeg 9.0.2
    essentials, SoX 14.4.2, GitHub CLI 2.102.0) and refuses any archive whose SHA-256 differs
    from `tools/setup.ps1`; puts CPython 3.12 in `.tools/python` if the PC has no Python 3.12;
