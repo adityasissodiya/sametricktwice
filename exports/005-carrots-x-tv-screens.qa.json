@@ -1,0 +1,468 @@
+{
+  "episode": "005-carrots-x-tv-screens",
+  "video": "005-carrots-x-tv-screens.mp4",
+  "checked": "2026-10-25T14:30:47+00:00",
+  "pipeline_fingerprint": "0fb4299f1200a8f6fd1cef3368b8b653bc61a7e8ae0b72e2c0abfb621e0386d1",
+  "passed": true,
+  "metrics": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sample_rate": 48000,
+    "duration_s": 57.25,
+    "narration_start_s": 0.0,
+    "first_frame_contrast": 24.27,
+    "first_frame_motion": 0.494,
+    "hook_end_s": 4.508,
+    "mechanism_beat": "B3",
+    "answer_start_s": 11.619,
+    "answer_share": 0.203,
+    "words": 150,
+    "wpm": 162.7,
+    "talk_s": 55.317,
+    "talk_source": "voice audio",
+    "sentence_pause_s": 0.493,
+    "sentence_pauses_measured": 9,
+    "delivery_note_audit": {
+      "notes_present": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9"
+      ],
+      "notes_drive_synthesis": false,
+      "manual_listen_required": true
+    },
+    "beats": {
+      "B1": [
+        0.0,
+        4.508
+      ],
+      "B2": [
+        4.819,
+        11.311
+      ],
+      "B3": [
+        11.619,
+        21.333
+      ],
+      "B4": [
+        21.636,
+        25.248
+      ],
+      "B5": [
+        25.553,
+        33.239
+      ],
+      "B6": [
+        33.553,
+        43.245
+      ],
+      "B7": [
+        43.553,
+        49.49
+      ],
+      "B8": [
+        49.803,
+        52.433
+      ],
+      "B9": [
+        52.736,
+        56.881
+      ]
+    },
+    "black_max_s": 0.967,
+    "freeze_max_s": 1.467,
+    "lufs": -14.4,
+    "true_peak_db": -2.9,
+    "opening_motion_steps": [
+      0.704,
+      0.616,
+      0.546,
+      0.532
+    ],
+    "opening_motion_min": 0.532,
+    "opening_motion_mean": 0.599,
+    "beat_visuals": {
+      "B1": {
+        "foreground_share": 0.4684,
+        "width_share": 0.9167,
+        "height_share": 0.86
+      },
+      "B2": {
+        "foreground_share": 0.2061,
+        "width_share": 0.8438,
+        "height_share": 0.92
+      },
+      "B3": {
+        "foreground_share": 0.394,
+        "width_share": 0.9375,
+        "height_share": 0.95
+      },
+      "B4": {
+        "foreground_share": 0.4348,
+        "width_share": 0.9688,
+        "height_share": 0.67
+      },
+      "B5": {
+        "foreground_share": 0.1754,
+        "width_share": 0.9062,
+        "height_share": 0.76
+      },
+      "B6": {
+        "foreground_share": 0.3873,
+        "width_share": 0.9583,
+        "height_share": 0.95
+      },
+      "B7": {
+        "foreground_share": 0.0871,
+        "width_share": 0.8542,
+        "height_share": 0.9
+      },
+      "B8": {
+        "foreground_share": 0.4048,
+        "width_share": 0.9167,
+        "height_share": 0.7
+      },
+      "B9": {
+        "foreground_share": 0.1327,
+        "width_share": 0.8021,
+        "height_share": 0.29
+      }
+    },
+    "visual_density_median": 0.3873,
+    "stage_height_median": 0.86,
+    "sfx_manifest_status": "ok",
+    "sfx_manifest_errors": [],
+    "sfx_cue_count": 15,
+    "sfx_cues_per_10s": 2.62,
+    "sfx_voice_mean_dbfs": -22.2,
+    "sfx_source_errors": [],
+    "sfx_speech_overlap_cues": 15,
+    "sfx_max_simultaneous": 1,
+    "sfx_cues": [
+      {
+        "name": "swipe.wav",
+        "time_s": 5.753,
+        "duration_s": 0.32,
+        "gain_db": -15.0,
+        "source": "kit/sfx/swipe.wav",
+        "source_mean_dbfs": -32.6,
+        "source_peak_dbfs": -17.9,
+        "effective_mean_dbfs": -47.6,
+        "effective_peak_dbfs": -32.9,
+        "relative_mean_db": -25.4,
+        "relative_peak_to_voice_mean_db": -10.7,
+        "overlaps_speech": true
+      },
+      {
+        "name": "ticks.wav",
+        "time_s": 6.953,
+        "duration_s": 0.48,
+        "gain_db": -15.0,
+        "source": "kit/sfx/ticks.wav",
+        "source_mean_dbfs": -35.5,
+        "source_peak_dbfs": -27.2,
+        "effective_mean_dbfs": -50.5,
+        "effective_peak_dbfs": -42.2,
+        "relative_mean_db": -28.3,
+        "relative_peak_to_voice_mean_db": -20.0,
+        "overlaps_speech": true
+      },
+      {
+        "name": "tap.wav",
+        "time_s": 13.386,
+        "duration_s": 0.07,
+        "gain_db": -12.0,
+        "source": "kit/sfx/tap.wav",
+        "source_mean_dbfs": -17.1,
+        "source_peak_dbfs": -4.3,
+        "effective_mean_dbfs": -29.1,
+        "effective_peak_dbfs": -16.3,
+        "relative_mean_db": -6.9,
+        "relative_peak_to_voice_mean_db": 5.9,
+        "overlaps_speech": true
+      },
+      {
+        "name": "spark.wav",
+        "time_s": 16.92,
+        "duration_s": 0.35,
+        "gain_db": -14.0,
+        "source": "kit/sfx/spark.wav",
+        "source_mean_dbfs": -21.5,
+        "source_peak_dbfs": -6.2,
+        "effective_mean_dbfs": -35.5,
+        "effective_peak_dbfs": -20.2,
+        "relative_mean_db": -13.3,
+        "relative_peak_to_voice_mean_db": 2.0,
+        "overlaps_speech": true
+      },
+      {
+        "name": "shutter.wav",
+        "time_s": 17.803,
+        "duration_s": 0.18,
+        "gain_db": -15.0,
+        "source": "kit/sfx/shutter.wav",
+        "source_mean_dbfs": -21.8,
+        "source_peak_dbfs": -8.0,
+        "effective_mean_dbfs": -36.8,
+        "effective_peak_dbfs": -23.0,
+        "relative_mean_db": -14.6,
+        "relative_peak_to_voice_mean_db": -0.8,
+        "overlaps_speech": true
+      },
+      {
+        "name": "ping.wav",
+        "time_s": 19.403,
+        "duration_s": 1.01,
+        "gain_db": -15.0,
+        "source": "kit/sfx/ping.wav",
+        "source_mean_dbfs": -36.1,
+        "source_peak_dbfs": -28.5,
+        "effective_mean_dbfs": -51.1,
+        "effective_peak_dbfs": -43.5,
+        "relative_mean_db": -28.9,
+        "relative_peak_to_voice_mean_db": -21.3,
+        "overlaps_speech": true
+      },
+      {
+        "name": "wash.wav",
+        "time_s": 22.536,
+        "duration_s": 0.65,
+        "gain_db": -16.0,
+        "source": "kit/sfx/wash.wav",
+        "source_mean_dbfs": -35.1,
+        "source_peak_dbfs": -20.2,
+        "effective_mean_dbfs": -51.1,
+        "effective_peak_dbfs": -36.2,
+        "relative_mean_db": -28.9,
+        "relative_peak_to_voice_mean_db": -14.0,
+        "overlaps_speech": true
+      },
+      {
+        "name": "swipe.wav",
+        "time_s": 26.653,
+        "duration_s": 0.32,
+        "gain_db": -15.0,
+        "source": "kit/sfx/swipe.wav",
+        "source_mean_dbfs": -32.6,
+        "source_peak_dbfs": -17.9,
+        "effective_mean_dbfs": -47.6,
+        "effective_peak_dbfs": -32.9,
+        "relative_mean_db": -25.4,
+        "relative_peak_to_voice_mean_db": -10.7,
+        "overlaps_speech": true
+      },
+      {
+        "name": "tap.wav",
+        "time_s": 35.32,
+        "duration_s": 0.07,
+        "gain_db": -12.0,
+        "source": "kit/sfx/tap.wav",
+        "source_mean_dbfs": -17.1,
+        "source_peak_dbfs": -4.3,
+        "effective_mean_dbfs": -29.1,
+        "effective_peak_dbfs": -16.3,
+        "relative_mean_db": -6.9,
+        "relative_peak_to_voice_mean_db": 5.9,
+        "overlaps_speech": true
+      },
+      {
+        "name": "spark.wav",
+        "time_s": 38.853,
+        "duration_s": 0.35,
+        "gain_db": -14.0,
+        "source": "kit/sfx/spark.wav",
+        "source_mean_dbfs": -21.5,
+        "source_peak_dbfs": -6.2,
+        "effective_mean_dbfs": -35.5,
+        "effective_peak_dbfs": -20.2,
+        "relative_mean_db": -13.3,
+        "relative_peak_to_voice_mean_db": 2.0,
+        "overlaps_speech": true
+      },
+      {
+        "name": "shutter.wav",
+        "time_s": 39.736,
+        "duration_s": 0.18,
+        "gain_db": -15.0,
+        "source": "kit/sfx/shutter.wav",
+        "source_mean_dbfs": -21.8,
+        "source_peak_dbfs": -8.0,
+        "effective_mean_dbfs": -36.8,
+        "effective_peak_dbfs": -23.0,
+        "relative_mean_db": -14.6,
+        "relative_peak_to_voice_mean_db": -0.8,
+        "overlaps_speech": true
+      },
+      {
+        "name": "ping.wav",
+        "time_s": 41.336,
+        "duration_s": 1.01,
+        "gain_db": -15.0,
+        "source": "kit/sfx/ping.wav",
+        "source_mean_dbfs": -36.1,
+        "source_peak_dbfs": -28.5,
+        "effective_mean_dbfs": -51.1,
+        "effective_peak_dbfs": -43.5,
+        "relative_mean_db": -28.9,
+        "relative_peak_to_voice_mean_db": -21.3,
+        "overlaps_speech": true
+      },
+      {
+        "name": "ticks.wav",
+        "time_s": 44.52,
+        "duration_s": 0.48,
+        "gain_db": -15.0,
+        "source": "kit/sfx/ticks.wav",
+        "source_mean_dbfs": -35.5,
+        "source_peak_dbfs": -27.2,
+        "effective_mean_dbfs": -50.5,
+        "effective_peak_dbfs": -42.2,
+        "relative_mean_db": -28.3,
+        "relative_peak_to_voice_mean_db": -20.0,
+        "overlaps_speech": true
+      },
+      {
+        "name": "pixels.wav",
+        "time_s": 50.42,
+        "duration_s": 0.85,
+        "gain_db": -14.0,
+        "source": "kit/sfx/pixels.wav",
+        "source_mean_dbfs": -24.6,
+        "source_peak_dbfs": -16.1,
+        "effective_mean_dbfs": -38.6,
+        "effective_peak_dbfs": -30.1,
+        "relative_mean_db": -16.4,
+        "relative_peak_to_voice_mean_db": -7.9,
+        "overlaps_speech": true
+      },
+      {
+        "name": "ping.wav",
+        "time_s": 55.003,
+        "duration_s": 1.01,
+        "gain_db": -12.0,
+        "source": "kit/sfx/ping.wav",
+        "source_mean_dbfs": -36.1,
+        "source_peak_dbfs": -28.5,
+        "effective_mean_dbfs": -48.1,
+        "effective_peak_dbfs": -40.5,
+        "relative_mean_db": -25.9,
+        "relative_peak_to_voice_mean_db": -18.3,
+        "overlaps_speech": true
+      }
+    ],
+    "sfx_duration_s": 57.25
+  },
+  "results": [
+    {
+      "rule": "format",
+      "status": "pass",
+      "detail": "1080x1920, 60.0 fps, h264/aac 48000 Hz",
+      "issues": []
+    },
+    {
+      "rule": "length",
+      "status": "pass",
+      "detail": "57.2 s (target 45-60 s)",
+      "issues": []
+    },
+    {
+      "rule": "cold-open",
+      "status": "pass",
+      "detail": "first word at 0.0 s; frame-0 contrast 24.27, change by 0.5 s 0.494",
+      "issues": []
+    },
+    {
+      "rule": "hook-time",
+      "status": "pass",
+      "detail": "B1 ends at 4.5 s (max 6.0 s)",
+      "issues": []
+    },
+    {
+      "rule": "early-answer",
+      "status": "pass",
+      "detail": "B3 starts at 11.619 s = 20% (max 35%)",
+      "issues": []
+    },
+    {
+      "rule": "speech-rate",
+      "status": "pass",
+      "detail": "162.7 words/min over 150 words, timed from the voice audio (range 130-190)",
+      "issues": []
+    },
+    {
+      "rule": "delivery-pace",
+      "status": "pass",
+      "detail": "162.7 words/min (house reference range 155-185; human sound-only review still required)",
+      "issues": []
+    },
+    {
+      "rule": "pauses",
+      "status": "pass",
+      "detail": "median sentence pause 0.493 s over 9 boundaries (range 0.35-0.9 s)",
+      "issues": []
+    },
+    {
+      "rule": "captions",
+      "status": "pass",
+      "detail": "9 beats, word for word",
+      "issues": []
+    },
+    {
+      "rule": "loudness",
+      "status": "pass",
+      "detail": "-14.4 LUFS, true peak -2.9 dBTP",
+      "issues": []
+    },
+    {
+      "rule": "opening-quality",
+      "status": "pass",
+      "detail": "weakest/mean opening quarter-second motion 0.532/0.599 gray levels",
+      "issues": []
+    },
+    {
+      "rule": "stage-coverage",
+      "status": "pass",
+      "detail": "median foreground 38.7%; 1/9 sparse beats",
+      "issues": []
+    },
+    {
+      "rule": "layout-variety",
+      "status": "pass",
+      "detail": "median stage height 86%; 1/9 wide strips",
+      "issues": []
+    },
+    {
+      "rule": "sfx-density",
+      "status": "pass",
+      "detail": "15 executed cues = 2.62/10 s (min 9 and 1.5/10 s)",
+      "issues": []
+    },
+    {
+      "rule": "sfx-audibility",
+      "status": "pass",
+      "detail": "9/15 cues clear the mean/peak floor (60%); median mean -25.4 dB vs narration",
+      "issues": []
+    },
+    {
+      "rule": "sfx-masking",
+      "status": "pass",
+      "detail": "15/15 cues overlap speech; 0 too loud; max 1 simultaneous",
+      "issues": []
+    },
+    {
+      "rule": "dead-air",
+      "status": "pass",
+      "detail": "longest near-black 0.967 s, longest freeze 1.467 s",
+      "issues": []
+    }
+  ]
+}

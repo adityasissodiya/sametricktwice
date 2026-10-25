@@ -30,9 +30,10 @@ Make it at 18/25 or more. Status: idea → brief → script → animate → done
 | 003 | Atomic bomb x Non-stick pans | PTFE (Teflon, 1938) resisted uranium hexafluoride in the Manhattan Project before it coated pans | done | documented |
 | 004 | Steam engine x AI | Jevons paradox: Watt's fuel-saving engine came with more British coal use; cheaper AI tokens came with far more token use, and AI power demand now props up coal | animate | documented (AI side partly projection) |
 | | Silver hallmarks x Photo content credentials | both stamp who made a thing and who checked it, on the object itself (English hallmarking from about 1300; C2PA content credentials) | idea | check |
+| | Thermometer strips x Cholesterol | "cholesteric" liquid crystals, named after cholesterol, change color with temperature | idea | check |
 | | Pencil x Nuclear reactor | graphite: pencil "lead", the moderator of Chicago Pile-1 (1942), the anode in Li-ion cells | idea | documented |
 | | Gun sights x Superglue | Harry Coover at Kodak found cyanoacrylate (1942) while making clear plastic gun sights | idea | documented |
-| | Carrots x TV screens | Reinitzer found liquid crystals (1888) in a compound made from carrots | idea | documented |
+| 005 | Carrots x TV screens | Reinitzer found liquid crystals (1888) in a cholesterol compound while studying carrots; the same rods switch light in LCD pixels | animate | documented |
 | | Hearing aids x Transistors | hearing aids were the first consumer transistor products; Bell Labs waived the royalties | idea | documented |
 | | Machine guns x Movie cameras | Janssen's "photographic revolver" (1874) and Marey's "photographic gun" (1882) | idea | documented |
 | | Bicycles x Airplanes | the Wrights' bicycle shop: wing warping from a twisted inner-tube box | idea | documented |

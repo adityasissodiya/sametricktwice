@@ -1,0 +1,72 @@
+1
+00:00:00,000 --> 00:00:01,847
+Your TV screen runs on a trick
+
+2
+00:00:01,947 --> 00:00:04,508
+a botanist found when he studied carrots.
+
+3
+00:00:04,819 --> 00:00:08,315
+In 1888, Friedrich Reinitzer studied cholesterol
+
+4
+00:00:08,415 --> 00:00:11,311
+from carrots. One compound melted twice.
+
+5
+00:00:11,619 --> 00:00:15,574
+Otto Lehmann put it between crossed filters. Its rod-shaped molecules
+
+6
+00:00:15,674 --> 00:00:18,512
+stayed in line and turned the light, so it passed.
+
+7
+00:00:18,612 --> 00:00:21,333
+More heat broke the line, and the light stopped.
+
+8
+00:00:21,636 --> 00:00:25,248
+Lehmann called them flowing crystals. We call them liquid crystals.
+
+9
+00:00:25,553 --> 00:00:29,346
+Old TVs were deep boxes. A century after Reinitzer, Sharp
+
+10
+00:00:29,446 --> 00:00:33,239
+showed a liquid crystal TV under three centimeters thick.
+
+11
+00:00:33,553 --> 00:00:37,195
+Each pixel holds rods like these between crossed filters. In
+
+12
+00:00:37,295 --> 00:00:40,376
+line, they turn the light, and the pixel is bright.
+
+13
+00:00:40,476 --> 00:00:43,245
+Voltage pulls them straight, and it goes dark.
+
+14
+00:00:43,553 --> 00:00:46,779
+But Reinitzer's crystals needed oven heat. So chemists
+
+15
+00:00:46,879 --> 00:00:49,490
+made new ones that work at room temperature.
+
+16
+00:00:49,803 --> 00:00:52,433
+Most new TVs still use liquid crystals.
+
+17
+00:00:52,736 --> 00:00:54,621
+The trick moved from a carrot lab to
+
+18
+00:00:54,721 --> 00:00:56,881
+your living room. Same trick, two worlds.
+
