@@ -1,0 +1,132 @@
+{
+  "episode": "003-atomic-bomb-x-non-stick-pans",
+  "video": "003-atomic-bomb-x-non-stick-pans.mp4",
+  "checked": "2026-10-07T15:43:50+00:00",
+  "passed": true,
+  "metrics": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sample_rate": 48000,
+    "duration_s": 57.167,
+    "narration_start_s": 0.0,
+    "first_frame_contrast": 13.33,
+    "first_frame_motion": 0.153,
+    "hook_end_s": 4.742,
+    "mechanism_beat": "B3",
+    "answer_start_s": 12.916,
+    "answer_share": 0.226,
+    "words": 136,
+    "wpm": 147.0,
+    "talk_s": 55.509,
+    "talk_source": "voice audio",
+    "sentence_pause_s": 0.506,
+    "sentence_pauses_measured": 5,
+    "beats": {
+      "B1": [
+        0.0,
+        4.742
+      ],
+      "B2": [
+        5.016,
+        12.639
+      ],
+      "B3": [
+        12.916,
+        22.566
+      ],
+      "B4": [
+        22.833,
+        25.208
+      ],
+      "B5": [
+        25.483,
+        31.271
+      ],
+      "B6": [
+        31.55,
+        36.143
+      ],
+      "B7": [
+        36.416,
+        45.084
+      ],
+      "B8": [
+        45.366,
+        49.896
+      ],
+      "B9": [
+        50.166,
+        56.808
+      ]
+    },
+    "black_max_s": 0.867,
+    "freeze_max_s": 1.75,
+    "lufs": -14.5,
+    "true_peak_db": -2.9
+  },
+  "results": [
+    {
+      "rule": "format",
+      "status": "pass",
+      "detail": "1080x1920, 60.0 fps, h264/aac 48000 Hz",
+      "issues": []
+    },
+    {
+      "rule": "length",
+      "status": "pass",
+      "detail": "57.2 s (target 45-60 s)",
+      "issues": []
+    },
+    {
+      "rule": "cold-open",
+      "status": "pass",
+      "detail": "first word at 0.0 s; frame-0 contrast 13.33, change by 0.5 s 0.153",
+      "issues": []
+    },
+    {
+      "rule": "hook-time",
+      "status": "pass",
+      "detail": "B1 ends at 4.7 s (max 6.0 s)",
+      "issues": []
+    },
+    {
+      "rule": "early-answer",
+      "status": "pass",
+      "detail": "B3 starts at 12.916 s = 23% (max 35%)",
+      "issues": []
+    },
+    {
+      "rule": "speech-rate",
+      "status": "pass",
+      "detail": "147.0 words/min over 136 words, timed from the voice audio (range 130-190)",
+      "issues": []
+    },
+    {
+      "rule": "pauses",
+      "status": "pass",
+      "detail": "median sentence pause 0.506 s over 5 boundaries (range 0.35-0.9 s)",
+      "issues": []
+    },
+    {
+      "rule": "captions",
+      "status": "pass",
+      "detail": "9 beats, word for word",
+      "issues": []
+    },
+    {
+      "rule": "loudness",
+      "status": "pass",
+      "detail": "-14.5 LUFS, true peak -2.9 dBTP",
+      "issues": []
+    },
+    {
+      "rule": "dead-air",
+      "status": "pass",
+      "detail": "longest near-black 0.867 s, longest freeze 1.75 s",
+      "issues": []
+    }
+  ]
+}

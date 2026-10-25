@@ -1,0 +1,9 @@
+# How the Kokoro voice should say words its English rules get wrong.
+# Values are IPA in Kokoro's spelling (see the phonemes `vid audition` prints).
+# Only the audio changes: captions and script.md keep the normal spelling.
+# Years ("1957" -> "nineteen fifty-seven") are handled automatically.
+
+"Nicéphore" = "nˌiːseɪfˈɔːɹ"   # nee-say-FOR
+"Niépce" = "niːˈɛps"           # nee-EPS
+"Lathrop" = "lˈeɪθɹəp"         # LAY-thrup
+"U.S." = "jˌuːˈɛs"             # no pauses between the letters

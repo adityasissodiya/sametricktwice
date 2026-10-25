@@ -1,0 +1,13 @@
+# Series constants: the ONLY things episodes may share. Everything else on screen, in the
+# narration, in the audio and in an episode's files must be made for that episode.
+# `vid lint <ep>` compares an episode with every earlier one and fails on any carry-over;
+# `vid final` runs it as a gate. Add to these lists only with the creator's approval.
+
+# On-screen text that may repeat in every episode (case does not matter).
+screen = ["Connection map", "SAME TRICK", "TWO WORLDS", "×"]
+
+# Narration sentences that may repeat (the series sign-off).
+lines = ["Same trick, two worlds."]
+
+# Words that belong to the series promise, not to one episode's topic.
+words = ["trick", "tricks", "same", "world", "worlds", "connection", "map"]

@@ -1,0 +1,15 @@
+.venv/
+.cache/
+.tools/
+media/
+__pycache__/
+
+# exports/ is committed on purpose (the creator's choice, 2026-10-08): finished masters,
+# their captions and QA reports, and the channel art travel with the repository.
+
+# Made by `vid report` from analytics/results.csv.
+analytics/report.md
+
+# The Consensus report behind RESEARCH.md: licensed for personal, non-commercial use only,
+# and redistribution needs the copyright holders' consent. Keep it local.
+What_does_peer-reviewed_research_show_about_design.pdf

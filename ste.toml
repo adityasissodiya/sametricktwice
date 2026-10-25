@@ -1,0 +1,36 @@
+# Settings for `vid check`: how close the narration must be to ASD-STE100
+# (Simplified Technical English, Issue 9, January 2025). Only the VO lines are checked.
+
+target = 0.80        # share of sentences that must pass every rule below (80%)
+max_words = 25       # STE limit for a descriptive sentence
+pace_words = 20      # hint only: above this a sentence is long to say in one breath
+wpm = 160            # narration speed for the length estimate
+seconds = [45, 60]   # target length of one Short
+
+# Vocabulary. STE allows only its ~900 approved words, plus technical names.
+#   "frequency"      approximates that: words rarer than min_zipf (wordfreq scale:
+#                    4 = 10 uses per million words) must be in a glossary.
+#   "approved-list"  uses your own copy of the STE approved words, one per line, in
+#                    approved_list. The specification is free from asd-ste100.org.
+vocabulary = "frequency"
+min_zipf = 4.0
+approved_list = "ste/approved-words.txt"
+
+# Technical names allowed in every episode. Each script adds its own in `glossary:`.
+glossary = [
+    "transistor", "transistors", "semiconductor", "semiconductors", "silicon",
+    "microscope", "lens", "lenses", "sensor", "sensors", "pixel", "pixels",
+    "molecule", "molecules", "atom", "atoms", "electron", "electrons",
+    "laser", "lasers", "radar", "polymer", "wafer", "wafers", "coating",
+]
+
+[rules]  # set a rule to false to stop checking it
+sentence_length = true
+complex_verbs = true
+ing_forms = true
+passive_voice = true
+noun_clusters = true
+fragments = true
+phrasal_verbs = true
+contractions = true
+vocabulary = true

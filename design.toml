@@ -1,0 +1,42 @@
+# Limits for the research-backed design rules.
+#   [check]  `vid check <ep>`: the episode's files, before anything is rendered
+#   [qa]     `vid qa <ep>`: the exported video (vid final runs both as gates)
+# Every key names its rule. RESEARCH.md gives the evidence for each rule, under the same name.
+# Change a limit only with the creator's approval, and log the reason and the data that
+# supports it in analytics/experiments.md. Never loosen a limit to make one episode pass.
+
+[check]
+bridge_max_words = 30      # one-goal: the brief's bridge is one sentence, the one thing to learn
+hook_max_words = 15        # hook-length: B1 lands in the first seconds
+mechanism_beat = "B3"      # early-answer: the beat that answers the hook's question...
+answer_by = 0.35           # ...starts within this share of the narration
+beat_max_words = 30        # micro-units: one small unit per beat
+beat_max_sentences = 3
+txt_max_words = 4          # minimal-text: a beat's big TXT words
+screen_max_words = 5       # minimal-text: any label or header in scene.py
+echo_words = 4             # minimal-text: on-screen text may not repeat this many VO words in a row
+title_max_chars = 60       # title: short, and it names both worlds
+# cold-open: B1 must not start like this (case does not matter)
+intro_phrases = [
+    "hi", "hello", "hey", "welcome", "in this video", "in today's video", "today we",
+    "today i", "let's talk", "let us talk", "before we start", "what's up",
+]
+# color-signals: a saturated color must be within this many degrees of the A, B or link hue
+hue_tolerance = 25
+neutral_saturation = 0.30  # below this a color is a neutral gray
+neutral_value = 0.25       # below this a color is a dark neutral
+
+[qa]
+seconds = [45, 60]         # length
+narration_start_max = 0.3  # cold-open: seconds before the first word
+first_frame_min_contrast = 4.0   # cold-open: frame 0 is not a blank field (gray-level spread)
+first_frame_min_motion = 0.15    # cold-open: frames at 0 s and 0.5 s differ (mean gray-level change)
+hook_end_max = 6.0         # hook-time: B1 is over by this second
+answer_by = 0.35           # early-answer: the mechanism beat starts within this share of the video
+wpm = [130, 190]           # speech-rate: words per minute of narration
+sentence_pause = [0.35, 0.9]  # pauses: median silence between two sentences, seconds
+lufs = -14.0               # loudness: integrated target...
+lufs_tolerance = 1.0       # ...plus or minus this
+true_peak_max = -1.5       # loudness: dBTP
+black_max = 1.0            # dead-air: longest near-black stretch, seconds
+freeze_max = 3.0           # dead-air: longest frozen picture, seconds

@@ -1,0 +1,263 @@
+{
+  "episode": "001-camera-x-chip",
+  "video": "001-camera-x-chip.mp4",
+  "checked": "2026-10-08T14:59:32+00:00",
+  "pipeline_fingerprint": "0fb4299f1200a8f6fd1cef3368b8b653bc61a7e8ae0b72e2c0abfb621e0386d1",
+  "passed": false,
+  "metrics": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sample_rate": 48000,
+    "duration_s": 61.099,
+    "narration_start_s": 0.0,
+    "first_frame_contrast": 18.27,
+    "first_frame_motion": 3.138,
+    "hook_end_s": 3.569,
+    "mechanism_beat": "B3",
+    "answer_start_s": 12.6,
+    "answer_share": 0.206,
+    "words": 160,
+    "wpm": 163.2,
+    "talk_s": 58.816,
+    "talk_source": "voice audio",
+    "sentence_pause_s": 0.504,
+    "sentence_pauses_measured": 10,
+    "delivery_note_audit": {
+      "notes_present": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9"
+      ],
+      "notes_drive_synthesis": false,
+      "manual_listen_required": true
+    },
+    "beats": {
+      "B1": [
+        0.0,
+        3.569
+      ],
+      "B2": [
+        3.916,
+        12.264
+      ],
+      "B3": [
+        12.6,
+        18.43
+      ],
+      "B4": [
+        18.766,
+        20.885
+      ],
+      "B5": [
+        21.233,
+        32.141
+      ],
+      "B6": [
+        32.483,
+        39.188
+      ],
+      "B7": [
+        39.533,
+        48.628
+      ],
+      "B8": [
+        48.966,
+        54.861
+      ],
+      "B9": [
+        55.2,
+        60.646
+      ]
+    },
+    "black_max_s": 0.917,
+    "freeze_max_s": 1.167,
+    "lufs": -14.2,
+    "true_peak_db": -1.5,
+    "opening_motion_steps": [
+      0.552,
+      5.385,
+      9.163,
+      2.317
+    ],
+    "opening_motion_min": 0.552,
+    "opening_motion_mean": 4.354,
+    "beat_visuals": {
+      "B1": {
+        "foreground_share": 0.1514,
+        "width_share": 1.0,
+        "height_share": 0.98
+      },
+      "B2": {
+        "foreground_share": 0.2008,
+        "width_share": 0.9583,
+        "height_share": 0.71
+      },
+      "B3": {
+        "foreground_share": 0.223,
+        "width_share": 0.8854,
+        "height_share": 0.77
+      },
+      "B4": {
+        "foreground_share": 0.288,
+        "width_share": 0.9375,
+        "height_share": 0.33
+      },
+      "B5": {
+        "foreground_share": 0.1416,
+        "width_share": 0.7604,
+        "height_share": 0.96
+      },
+      "B6": {
+        "foreground_share": 0.272,
+        "width_share": 0.875,
+        "height_share": 0.97
+      },
+      "B7": {
+        "foreground_share": 0.2553,
+        "width_share": 0.8542,
+        "height_share": 0.75
+      },
+      "B8": {
+        "foreground_share": 0.2845,
+        "width_share": 0.9583,
+        "height_share": 0.82
+      },
+      "B9": {
+        "foreground_share": 0.1502,
+        "width_share": 0.9583,
+        "height_share": 0.42
+      }
+    },
+    "visual_density_median": 0.223,
+    "stage_height_median": 0.77,
+    "sfx_manifest_status": "missing",
+    "sfx_manifest_errors": [
+      "no sfx-manifest.json; render the episode again"
+    ],
+    "sfx_cue_count": 0,
+    "sfx_cues_per_10s": 0.0,
+    "sfx_voice_mean_dbfs": null,
+    "sfx_source_errors": [],
+    "sfx_speech_overlap_cues": 0,
+    "sfx_max_simultaneous": 0,
+    "sfx_cues": [],
+    "sfx_duration_s": 61.099
+  },
+  "results": [
+    {
+      "rule": "format",
+      "status": "pass",
+      "detail": "1080x1920, 60.0 fps, h264/aac 48000 Hz",
+      "issues": []
+    },
+    {
+      "rule": "length",
+      "status": "fail",
+      "detail": "61.1 s (target 45-60 s)",
+      "issues": [
+        "61.1 s is outside 45-60 s"
+      ]
+    },
+    {
+      "rule": "cold-open",
+      "status": "pass",
+      "detail": "first word at 0.0 s; frame-0 contrast 18.27, change by 0.5 s 3.138",
+      "issues": []
+    },
+    {
+      "rule": "hook-time",
+      "status": "pass",
+      "detail": "B1 ends at 3.6 s (max 6.0 s)",
+      "issues": []
+    },
+    {
+      "rule": "early-answer",
+      "status": "pass",
+      "detail": "B3 starts at 12.6 s = 21% (max 35%)",
+      "issues": []
+    },
+    {
+      "rule": "speech-rate",
+      "status": "pass",
+      "detail": "163.2 words/min over 160 words, timed from the voice audio (range 130-190)",
+      "issues": []
+    },
+    {
+      "rule": "delivery-pace",
+      "status": "pass",
+      "detail": "163.2 words/min (house reference range 155-185; human sound-only review still required)",
+      "issues": []
+    },
+    {
+      "rule": "pauses",
+      "status": "pass",
+      "detail": "median sentence pause 0.504 s over 10 boundaries (range 0.35-0.9 s)",
+      "issues": []
+    },
+    {
+      "rule": "captions",
+      "status": "pass",
+      "detail": "9 beats, word for word",
+      "issues": []
+    },
+    {
+      "rule": "loudness",
+      "status": "pass",
+      "detail": "-14.2 LUFS, true peak -1.5 dBTP",
+      "issues": []
+    },
+    {
+      "rule": "opening-quality",
+      "status": "pass",
+      "detail": "weakest/mean opening quarter-second motion 0.552/4.354 gray levels",
+      "issues": []
+    },
+    {
+      "rule": "stage-coverage",
+      "status": "pass",
+      "detail": "median foreground 22.3%; 0/9 sparse beats",
+      "issues": []
+    },
+    {
+      "rule": "layout-variety",
+      "status": "pass",
+      "detail": "median stage height 77%; 2/9 wide strips",
+      "issues": []
+    },
+    {
+      "rule": "sfx-density",
+      "status": "fail",
+      "detail": "no executed-cue manifest",
+      "issues": [
+        "no sfx-manifest.json; render the episode again"
+      ]
+    },
+    {
+      "rule": "sfx-audibility",
+      "status": "skip",
+      "detail": "needs the executed-cue manifest",
+      "issues": []
+    },
+    {
+      "rule": "sfx-masking",
+      "status": "skip",
+      "detail": "needs the executed-cue manifest",
+      "issues": []
+    },
+    {
+      "rule": "dead-air",
+      "status": "pass",
+      "detail": "longest near-black 0.917 s, longest freeze 1.167 s",
+      "issues": []
+    }
+  ]
+}

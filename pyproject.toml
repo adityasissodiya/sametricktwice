@@ -1,0 +1,24 @@
+[project]
+name = "videoidea"
+version = "0.1.0"
+description = "Vertical explainer Shorts: two unrelated technologies, one shared history."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "manim==0.21.0",
+    "manim-voiceover[gtts,recorder]==0.4.0",
+    "spacy>=3.8,<3.9",
+    "en_core_web_sm",
+    "wordfreq>=3.1",
+    "kokoro-onnx==0.6.1",
+]
+
+[tool.uv]
+package = false
+# Everything stays inside this folder: vid.cmd (tools/env.cmd) points uv's cache at .cache/uv
+# and a project-local Python at .tools/python. Only `vid setup` downloads a Python build, and
+# only when this PC has no Python 3.12.
+python-downloads = "never"
+python-preference = "system"
+
+[tool.uv.sources]
+en_core_web_sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }

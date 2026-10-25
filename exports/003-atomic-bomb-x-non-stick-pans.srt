@@ -1,0 +1,68 @@
+1
+00:00:00,000 --> 00:00:02,686
+The atomic-bomb project used non-stick pan
+
+2
+00:00:02,786 --> 00:00:04,742
+plastic before any kitchen did.
+
+3
+00:00:05,050 --> 00:00:09,318
+In 1938, chemist Roy Plunkett found a white solid inside
+
+4
+00:00:09,418 --> 00:00:12,672
+a gas cylinder. It was PTFE, a new plastic.
+
+5
+00:00:12,983 --> 00:00:18,173
+The Manhattan Project used uranium hexafluoride gas to enrich uranium.
+
+6
+00:00:18,273 --> 00:00:22,632
+The gas attacked ordinary materials, but PTFE stayed inert.
+
+7
+00:00:22,933 --> 00:00:25,308
+That was the trick: shield, resist, release.
+
+8
+00:00:25,616 --> 00:00:28,259
+In the mid-1950s, Marc and Colette
+
+9
+00:00:28,359 --> 00:00:31,404
+Grégoire put PTFE on aluminum cookware.
+
+10
+00:00:31,716 --> 00:00:34,339
+Food does not grip the low-friction surface, so
+
+11
+00:00:34,439 --> 00:00:36,310
+oil and eggs release from the pan.
+
+12
+00:00:36,616 --> 00:00:41,154
+That created the opposite problem: how can non-stick PTFE stick to metal?
+
+13
+00:00:41,254 --> 00:00:45,284
+They made tiny pits in the aluminum, and the coating filled them.
+
+14
+00:00:45,600 --> 00:00:47,428
+After the war, PTFE moved from
+
+15
+00:00:47,528 --> 00:00:50,129
+secret equipment into factories and homes.
+
+16
+00:00:50,433 --> 00:00:53,898
+It resisted the harsh gas, then released breakfast. One
+
+17
+00:00:53,998 --> 00:00:57,074
+surface solved both jobs. Same trick, two worlds.
+

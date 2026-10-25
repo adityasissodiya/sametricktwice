@@ -1,0 +1,68 @@
+1
+00:00:00,000 --> 00:00:03,569
+A 200-year-old camera trick makes every chip in your phone.
+
+2
+00:00:03,916 --> 00:00:08,145
+Around 1827, Nicéphore Niépce put a thin layer of asphalt on a
+
+3
+00:00:08,245 --> 00:00:12,264
+metal plate. He placed the plate in a camera at his window.
+
+4
+00:00:12,600 --> 00:00:15,808
+Light made the asphalt hard. Lavender oil removed the
+
+5
+00:00:15,908 --> 00:00:18,430
+soft parts. The hard parts made a picture.
+
+6
+00:00:18,766 --> 00:00:20,885
+That is the trick: coat, light, wash.
+
+7
+00:00:21,233 --> 00:00:24,278
+In 1957, two scientists at a U.S. Army lab
+
+8
+00:00:24,378 --> 00:00:29,145
+needed tiny transistors. Jay Lathrop turned his microscope upside
+
+9
+00:00:29,245 --> 00:00:32,141
+down, so the lens made patterns smaller.
+
+10
+00:00:32,483 --> 00:00:35,542
+They used the same trick, with a coating from Kodak.
+
+11
+00:00:35,642 --> 00:00:39,188
+We still call it photolithography: light, stone and writing.
+
+12
+00:00:39,533 --> 00:00:44,280
+Then chips helped cameras in return. In 1975, a Kodak engineer built
+
+13
+00:00:44,380 --> 00:00:48,628
+the first digital camera you could carry. Its eye was a chip.
+
+14
+00:00:48,966 --> 00:00:51,800
+Today, the machines that print chips are giant
+
+15
+00:00:51,900 --> 00:00:54,861
+cameras. Nikon, Canon and Zeiss help build them.
+
+16
+00:00:55,200 --> 00:00:57,903
+Cameras taught us how to make chips. Then chips
+
+17
+00:00:58,003 --> 00:01:00,646
+gave cameras new eyes. Same trick, two worlds.
+

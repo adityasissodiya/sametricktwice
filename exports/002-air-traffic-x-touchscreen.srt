@@ -1,0 +1,64 @@
+1
+00:00:00,000 --> 00:00:04,785
+Every tap on your phone uses an idea from a 1965 radar lab.
+
+2
+00:00:05,118 --> 00:00:09,232
+In 1965, Eric Johnson worked at a British radar lab. He wanted air
+
+3
+00:00:09,332 --> 00:00:13,445
+traffic controllers to pick a flight on the screen with one touch.
+
+4
+00:00:13,785 --> 00:00:17,331
+He put thin wires across the screen. Your finger changes how
+
+5
+00:00:17,431 --> 00:00:20,490
+much charge a wire can hold, and a circuit feels it.
+
+6
+00:00:20,835 --> 00:00:23,060
+That is the trick: touch, charge, find.
+
+7
+00:00:23,402 --> 00:00:26,125
+About forty years later, phone makers removed the
+
+8
+00:00:26,225 --> 00:00:28,315
+keys. The whole front became a screen.
+
+9
+00:00:28,652 --> 00:00:31,272
+They used the same trick, with a grid of clear
+
+10
+00:00:31,372 --> 00:00:34,643
+wires under the glass. Your finger takes charge where two
+
+11
+00:00:34,743 --> 00:00:37,128
+wires cross, and the phone finds the spot.
+
+12
+00:00:37,468 --> 00:00:41,650
+Then touchscreens returned to air traffic control. Today, many British
+
+13
+00:00:41,750 --> 00:00:45,198
+controllers move flight strips with a touch, not on paper.
+
+14
+00:00:45,535 --> 00:00:48,507
+Today, most phones and tablets feel your finger this way.
+
+15
+00:00:48,852 --> 00:00:52,070
+Air traffic control taught screens to feel a finger. Then
+
+16
+00:00:52,170 --> 00:00:55,621
+touchscreens helped guide the planes. Same trick, two worlds.
+
