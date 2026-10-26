@@ -1,4 +1,4 @@
-"""vid: the episode pipeline. Run it through vid.cmd, which keeps every tool and cache in this folder.
+"""vid: the episode pipeline. Run it through vid (vid.cmd on Windows), which keeps every tool and cache in this folder.
 
   vid status [<ep>]      where an episode stands and the one thing to do next (start here)
   vid new <slug>         start an episode from the templates (e.g. 004-film-x-explosives)
@@ -346,13 +346,14 @@ def cmd_doctor(args) -> int:
     for var in ("UV_CACHE_DIR", "XDG_CACHE_HOME", "HF_HOME", "TORCH_HOME", "PIP_CACHE_DIR", "TEMP"):
         value = os.environ.get(var, "")
         inside = value and Path(value).resolve().is_relative_to(ROOT)
-        print(f"  {var:<15} {'ok ' if inside else 'OFF'} {value or '(not set: run through vid.cmd)'}")
+        print(f"  {var:<15} {'ok ' if inside else 'OFF'} {value or '(not set: run through vid)'}")
     print("\nProject folder sizes:")
     for name in (".venv", ".cache", ".tools", "media", "exports"):
         if (ROOT / name).exists():
             print(f"  {name:<8} {folder_gb(ROOT / name):6.2f} GB")
     print("\nFree space:")
-    for drive in sorted({ROOT.anchor, "C:\\"}):  # this folder's drive and the system drive
+    system = "C:\\" if os.name == "nt" else "/"
+    for drive in sorted({ROOT.anchor, system}):  # this folder's drive and the system drive
         if Path(drive).exists():
             print(f"  {drive}  {shutil.disk_usage(drive).free / 1e9:6.1f} GB")
     return 0

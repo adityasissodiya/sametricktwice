@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# One entry point for the whole pipeline on Linux and macOS (Windows: vid.cmd).
+# Run "./vid" with no arguments for the commands. Everything it installs, caches or renders
+# stays inside this folder.
+set -e
+. "$(cd "$(dirname "$0")" && pwd)/tools/env.sh"
+cd "$VID_ROOT"
+
+case "$1" in
+    setup)
+        # Pinned uv, Python 3.12, packages and the narrator model; see tools/setup.sh.
+        exec bash "$VID_ROOT/tools/setup.sh" ;;
+    uv)
+        shift
+        exec uv "$@" ;;
+esac
+
+if [ ! -x "$VID_ROOT/.venv/bin/python" ]; then
+    echo "No environment yet. Run:  ./vid setup"
+    exit 1
+fi
+exec "$VID_ROOT/.venv/bin/python" "$VID_ROOT/tools/vid.py" "$@"

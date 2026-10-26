@@ -169,7 +169,7 @@ content or an unexplained exception.
 
 ## Commands
 
-Always run through `vid` (in PowerShell `.\vid`, in cmd `vid`). It pins tools, caches,
+Always run through `vid` (on Linux and macOS `./vid`, in PowerShell `.\vid`, in cmd `vid`). It pins tools, caches,
 resolution and export settings to this folder.
 
 | Command | Use it to |

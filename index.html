@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Same Trick Twice</title>
+<meta name="description" content="Vertical science Shorts made by an AI agent from a sourced brief: two unrelated technologies, one shared trick.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* The series palette (kit/style.py): A blue, B orange, the trick violet. */
+  :root {
+    --bg: #0F1117; --ink: #ECEFF4; --muted: #7D869C; --faint: #2A2F3A;
+    --a: #58B4FF; --b: #FF9F45; --link: #C792EA;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.55 "Open Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1, h2, .label { font-family: "Barlow Semi Condensed", Bahnschrift, "Arial Narrow", sans-serif; }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1; margin: 0 0 12px; letter-spacing: .01em; }
+  h1 .a { color: var(--a); } h1 .b { color: var(--b); } h1 .x { color: var(--link); }
+  .lede { color: var(--muted); max-width: 46ch; margin: 0 0 36px; font-size: 1.05rem; }
+  .stage { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 40px; align-items: start; }
+  video {
+    width: 100%; aspect-ratio: 9 / 16; display: block; background: #000;
+    border-radius: 18px; border: 1px solid var(--faint);
+  }
+  .label { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; margin: 0 0 6px; }
+  h2 { font-size: 1.9rem; line-height: 1.1; margin: 0 0 14px; }
+  .bridge { margin: 0 0 22px; }
+  .bridge b { color: var(--link); font-weight: 600; }
+  ol.beats { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 6px; }
+  ol.beats li { display: flex; gap: 12px; font-size: .95rem; }
+  ol.beats span { color: var(--muted); font-family: "Barlow Semi Condensed", sans-serif; min-width: 2.2em; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 8px; }
+  .stats div { border: 1px solid var(--faint); border-radius: 10px; padding: 8px 12px; font-size: .9rem; }
+  .stats b { display: block; font-family: "Barlow Semi Condensed", sans-serif; font-size: 1.3rem; }
+  .more { margin-top: 56px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .grid button {
+    all: unset; cursor: pointer; border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--faint); background: #151821;
+  }
+  .grid button[aria-current="true"] { border-color: var(--link); }
+  .grid button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+  .grid img { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; object-position: top; }
+  .grid p { margin: 0; padding: 8px 10px 10px; font-size: .85rem; }
+  footer { margin-top: 56px; color: var(--muted); font-size: .9rem; }
+  a { color: var(--a); }
+  @media (max-width: 720px) {
+    main { padding-top: 28px; }
+    .stage { grid-template-columns: 1fr; gap: 24px; }
+    video { max-width: 360px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><span class="a">Same Trick</span> <span class="x">×</span> <span class="b">Twice</span></h1>
+  <p class="lede">Two technologies that look unrelated, one trick they share, under a minute of
+    animation. Every frame is drawn in code from a sourced brief.</p>
+
+  <section class="stage">
+    <video id="player" controls playsinline preload="metadata"
+           poster="docs/004-steam-engine-x-ai.jpg" src="exports/004-steam-engine-x-ai.mp4"></video>
+    <div>
+      <p class="label" id="ep-num">Episode 004</p>
+      <h2 id="ep-title">Steam Engine × AI</h2>
+      <p class="bridge" id="ep-bridge">When each use of a resource gets cheaper, people find many more
+        uses, so total use can rise: <b>the Jevons paradox</b>, from coal after Watt's engine to tokens
+        after cheap AI.</p>
+      <div id="ep-extra">
+        <ol class="beats">
+          <li><span>B1</span>The hook: saved coal, burned more</li>
+          <li><span>B2</span>World A: Watt's 1769 condenser</li>
+          <li><span>B3</span>The trick, drawn as a reusable mechanism</li>
+          <li><span>B4</span>The name: Jevons, 1865</li>
+          <li><span>B5</span>World B: token prices fall 200×</li>
+          <li><span>B6</span>The same mechanism, replayed with AI</li>
+          <li><span>B7–B8</span>Payback and today: AI feeds coal</li>
+          <li><span>B9</span>Connection map, looping back to B1</li>
+        </ol>
+        <div class="stats">
+          <div><b>58 s</b>length</div>
+          <div><b>94%</b>plain-English sentences</div>
+          <div><b>12</b>sourced claims</div>
+          <div><b>17/17</b>export checks pass</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <p class="label">Every episode</p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <footer>Made with <a href="https://www.manim.community/">Manim</a> and the open Kokoro-82M voice.
+    Source, pipeline and the research behind each rule:
+    <a href="https://github.com/adityasissodiya/sametricktwice">github.com/adityasissodiya/sametricktwice</a>.</footer>
+</main>
+<script>
+  const episodes = [
+    ["001-camera-x-chip", "Camera × Chip",
+     "Chips are printed with the same light-hardens-a-coating trick that made the first photograph."],
+    ["002-air-traffic-x-touchscreen", "Air Traffic × Touchscreen",
+     "Phone screens feel your finger with the same trick a 1965 radar lab used: a finger changes the charge on a wire."],
+    ["003-atomic-bomb-x-non-stick-pans", "Atomic Bomb × Non-Stick Pans",
+     "PTFE's fluorine-rich surface resisted uranium gas in the Manhattan Project, then gave food little to grip on pans."],
+    ["004-steam-engine-x-ai", "Steam Engine × AI", null],
+    ["005-carrots-x-tv-screens", "Carrots × TV Screens",
+     "Liquid crystals flow like a liquid but line up like a crystal, so heat or voltage can switch light through crossed filters."],
+  ];
+  const player = document.getElementById("player");
+  const grid = document.getElementById("grid");
+  const featured = document.getElementById("ep-bridge").innerHTML;
+  episodes.forEach(([slug, title, bridge]) => {
+    const btn = document.createElement("button");
+    btn.setAttribute("aria-current", slug.startsWith("004") ? "true" : "false");
+    btn.innerHTML = `<img src="docs/${slug}.jpg" alt="" loading="lazy"><p>${slug.slice(0, 3)} · ${title}</p>`;
+    btn.addEventListener("click", () => {
+      grid.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", "false"));
+      btn.setAttribute("aria-current", "true");
+      player.poster = `docs/${slug}.jpg`;
+      player.src = `exports/${slug}.mp4`;
+      player.play().catch(() => {});
+      document.getElementById("ep-num").textContent = `Episode ${slug.slice(0, 3)}`;
+      document.getElementById("ep-title").textContent = title;
+      document.getElementById("ep-bridge").innerHTML = bridge ?? featured;
+      document.getElementById("ep-extra").hidden = !slug.startsWith("004");
+      player.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+    grid.appendChild(btn);
+  });
+</script>
+</body>
+</html>

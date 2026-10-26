@@ -6,6 +6,9 @@ Primary compositions use the Shorts-safe axis ``SAFE_CENTER[0]`` (-0.4), not x=0
 See STYLE_GUIDE.md before adding or changing visual constants.
 """
 
+from pathlib import Path
+
+import manimpango
 from manim import RIGHT, UP, config
 
 # Vertical 9:16 frame, 8 units wide, so 1 unit = 135 px at 1080x1920.
@@ -24,9 +27,22 @@ B_COLOR = "#FF9F45"  # world B
 LINK_COLOR = "#C792EA"  # the shared trick
 ALERT = "#FF5C5C"  # a problem: too big, blocked, wrong. Use it rarely, for that meaning only
 
-# Fonts that ship with Windows, so nothing has to be installed.
-TITLE_FONT = "Bahnschrift"
-BODY_FONT = "Segoe UI"
+# The house fonts ship with Windows. On Linux and macOS, which lack them, the open-licence
+# look-alikes in kit/fonts (OFL, see the licence files there) are registered and used instead,
+# so a render looks the same on every machine without installing anything.
+FONT_DIR = Path(__file__).with_name("fonts")
+
+
+def _pick_font(house: str, stand_in: str) -> str:
+    if house in manimpango.list_fonts():
+        return house
+    for font in sorted(FONT_DIR.glob("*.ttf")):
+        manimpango.register_font(str(font))
+    return stand_in
+
+
+TITLE_FONT = _pick_font("Bahnschrift", "Barlow Semi Condensed")
+BODY_FONT = _pick_font("Segoe UI", "Open Sans")
 
 TITLE_SIZE = 64
 BODY_SIZE = 34

@@ -4,3 +4,9 @@
 *.png binary
 *.mp4 binary
 *.ps1 text eol=crlf
+# The Linux and macOS entry points must keep LF endings on every checkout.
+vid text eol=lf
+*.sh text eol=lf
+*.ttf binary
+*.jpg binary
+*.gif binary

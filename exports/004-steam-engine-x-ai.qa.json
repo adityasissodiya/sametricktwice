@@ -1,8 +1,8 @@
 {
   "episode": "004-steam-engine-x-ai",
   "video": "004-steam-engine-x-ai.mp4",
-  "checked": "2026-10-25T13:55:26+00:00",
-  "pipeline_fingerprint": "0fb4299f1200a8f6fd1cef3368b8b653bc61a7e8ae0b72e2c0abfb621e0386d1",
+  "checked": "2026-10-26T08:50:10+00:00",
+  "pipeline_fingerprint": "b81284a4f1fe1b3140563a2fe6b9610b674b665441b29ae09cefd9369b2226a8",
   "passed": true,
   "metrics": {
     "width": 1080,
@@ -23,7 +23,7 @@
     "wpm": 156.7,
     "talk_s": 56.299,
     "talk_source": "voice audio",
-    "sentence_pause_s": 0.479,
+    "sentence_pause_s": 0.478,
     "sentence_pauses_measured": 8,
     "delivery_note_audit": {
       "notes_present": [
@@ -150,7 +150,7 @@
     "sfx_cues": [
       {
         "name": "whoosh.wav",
-        "time_s": 2.117,
+        "time_s": 2.133,
         "duration_s": 0.55,
         "gain_db": -14.0,
         "source": "kit/sfx/whoosh.wav",
@@ -164,7 +164,7 @@
       },
       {
         "name": "swipe.wav",
-        "time_s": 6.617,
+        "time_s": 6.633,
         "duration_s": 0.32,
         "gain_db": -15.0,
         "source": "kit/sfx/swipe.wav",
@@ -178,7 +178,7 @@
       },
       {
         "name": "wash.wav",
-        "time_s": 8.317,
+        "time_s": 8.333,
         "duration_s": 0.65,
         "gain_db": -16.0,
         "source": "kit/sfx/wash.wav",
@@ -192,7 +192,7 @@
       },
       {
         "name": "tap.wav",
-        "time_s": 13.6,
+        "time_s": 13.633,
         "duration_s": 0.07,
         "gain_db": -12.0,
         "source": "kit/sfx/tap.wav",
@@ -206,7 +206,7 @@
       },
       {
         "name": "pixels.wav",
-        "time_s": 14.967,
+        "time_s": 15.0,
         "duration_s": 0.85,
         "gain_db": -14.0,
         "source": "kit/sfx/pixels.wav",
@@ -220,7 +220,7 @@
       },
       {
         "name": "power-up.wav",
-        "time_s": 16.583,
+        "time_s": 16.633,
         "duration_s": 0.7,
         "gain_db": -14.0,
         "source": "kit/sfx/power-up.wav",
@@ -234,7 +234,7 @@
       },
       {
         "name": "ping.wav",
-        "time_s": 18.2,
+        "time_s": 18.267,
         "duration_s": 1.01,
         "gain_db": -15.0,
         "source": "kit/sfx/ping.wav",
@@ -248,7 +248,7 @@
       },
       {
         "name": "spark.wav",
-        "time_s": 22.9,
+        "time_s": 22.933,
         "duration_s": 0.35,
         "gain_db": -14.0,
         "source": "kit/sfx/spark.wav",
@@ -262,7 +262,7 @@
       },
       {
         "name": "swipe.wav",
-        "time_s": 26.333,
+        "time_s": 26.367,
         "duration_s": 0.32,
         "gain_db": -15.0,
         "source": "kit/sfx/swipe.wav",
@@ -276,7 +276,7 @@
       },
       {
         "name": "ticks.wav",
-        "time_s": 28.75,
+        "time_s": 28.8,
         "duration_s": 0.48,
         "gain_db": -15.0,
         "source": "kit/sfx/ticks.wav",
@@ -290,7 +290,7 @@
       },
       {
         "name": "tap.wav",
-        "time_s": 34.633,
+        "time_s": 34.667,
         "duration_s": 0.07,
         "gain_db": -12.0,
         "source": "kit/sfx/tap.wav",
@@ -304,7 +304,7 @@
       },
       {
         "name": "pixels.wav",
-        "time_s": 36.0,
+        "time_s": 36.033,
         "duration_s": 0.85,
         "gain_db": -14.0,
         "source": "kit/sfx/pixels.wav",
@@ -318,7 +318,7 @@
       },
       {
         "name": "power-up.wav",
-        "time_s": 37.617,
+        "time_s": 37.667,
         "duration_s": 0.7,
         "gain_db": -14.0,
         "source": "kit/sfx/power-up.wav",
@@ -332,7 +332,7 @@
       },
       {
         "name": "ping.wav",
-        "time_s": 39.233,
+        "time_s": 39.3,
         "duration_s": 1.01,
         "gain_db": -15.0,
         "source": "kit/sfx/ping.wav",
@@ -346,7 +346,7 @@
       },
       {
         "name": "ticks.wav",
-        "time_s": 42.033,
+        "time_s": 42.067,
         "duration_s": 0.48,
         "gain_db": -15.0,
         "source": "kit/sfx/ticks.wav",
@@ -360,7 +360,7 @@
       },
       {
         "name": "swipe.wav",
-        "time_s": 46.533,
+        "time_s": 46.567,
         "duration_s": 0.32,
         "gain_db": -15.0,
         "source": "kit/sfx/swipe.wav",
@@ -374,7 +374,7 @@
       },
       {
         "name": "power-up.wav",
-        "time_s": 50.317,
+        "time_s": 50.367,
         "duration_s": 0.7,
         "gain_db": -14.0,
         "source": "kit/sfx/power-up.wav",
@@ -388,7 +388,7 @@
       },
       {
         "name": "ping.wav",
-        "time_s": 56.067,
+        "time_s": 56.167,
         "duration_s": 1.01,
         "gain_db": -12.0,
         "source": "kit/sfx/ping.wav",
@@ -449,7 +449,7 @@
     {
       "rule": "pauses",
       "status": "pass",
-      "detail": "median sentence pause 0.479 s over 8 boundaries (range 0.35-0.9 s)",
+      "detail": "median sentence pause 0.478 s over 8 boundaries (range 0.35-0.9 s)",
       "issues": []
     },
     {
