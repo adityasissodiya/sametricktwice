@@ -649,6 +649,7 @@ class AlignmentLoop:
         *,
         axis_x: float = float(STAGE_CENTER[0]),
         axis_y: float = float(STAGE_CENTER[1]),
+        safe_bounds: Box | None = None,
         tolerance: float = DEFAULT_TOLERANCE,
         max_passes: int = DEFAULT_MAX_PASSES,
         on_failure: FailureMode = "raise",
@@ -663,6 +664,9 @@ class AlignmentLoop:
         self.label = label
         self.axis_x = float(axis_x)
         self.axis_y = float(axis_y)
+        # inside_safe's rectangle: the Shorts-safe one unless the frame has another
+        # (kit/landscape.py passes its title-safe rectangle).
+        self.safe_bounds = safe_bounds or Box(SAFE_LEFT, SAFE_RIGHT, SAFE_BOTTOM, SAFE_TOP)
         self.tolerance = float(tolerance)
         self.max_passes = int(max_passes)
         self.on_failure = on_failure
@@ -786,14 +790,14 @@ class AlignmentLoop:
         bounds: Box | None = None,
         tolerance: float | None = None,
     ) -> Mobject:
-        """Keep a composition inside the Shorts-safe rectangle, scaling if needed."""
+        """Keep a composition inside the loop's safe rectangle, scaling if needed."""
 
         self.constraints.append(
             _InsideBounds(
                 mobject,
                 name or _name(mobject, "safe-area object"),
                 self._tol(tolerance),
-                bounds or Box(SAFE_LEFT, SAFE_RIGHT, SAFE_BOTTOM, SAFE_TOP),
+                bounds or self.safe_bounds,
                 float(padding),
                 allow_scale,
             )
@@ -954,24 +958,26 @@ def alignment_guides(
     *,
     axis_x: float = float(STAGE_CENTER[0]),
     axis_y: float = float(STAGE_CENTER[1]),
+    bounds: Box | None = None,
 ) -> Mobject:
     """Debug overlay for the safe-area symmetry axis and stage center."""
 
+    box = bounds or Box(SAFE_LEFT, SAFE_RIGHT, SAFE_BOTTOM, SAFE_TOP)
     safe = Rectangle(
-        width=SAFE_RIGHT - SAFE_LEFT,
-        height=SAFE_TOP - SAFE_BOTTOM,
+        width=box.width,
+        height=box.height,
         stroke_color=LINK_COLOR,
         stroke_width=1.5,
-    ).move_to([(SAFE_LEFT + SAFE_RIGHT) / 2, (SAFE_BOTTOM + SAFE_TOP) / 2, 0])
+    ).move_to([box.center_x, box.center_y, 0])
     axis = DashedLine(
-        [axis_x, SAFE_BOTTOM, 0],
-        [axis_x, SAFE_TOP, 0],
+        [axis_x, box.bottom, 0],
+        [axis_x, box.top, 0],
         dash_length=0.10,
         color=LINK_COLOR,
         stroke_width=2,
     )
     cross = VGroup(
-        DashedLine([SAFE_LEFT, axis_y, 0], [SAFE_RIGHT, axis_y, 0], dash_length=0.10, color=LINK_COLOR),
+        DashedLine([box.left, axis_y, 0], [box.right, axis_y, 0], dash_length=0.10, color=LINK_COLOR),
         Dot([axis_x, axis_y, 0], radius=0.06, color=LINK_COLOR),
     )
     label = Text("SYMMETRY AXIS", font=BODY_FONT, font_size=16, color=LINK_COLOR)

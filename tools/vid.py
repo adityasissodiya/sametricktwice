@@ -36,7 +36,8 @@
                          the narrator model, then doctor and the tests (safe to run again)
   vid uv <args>          run uv with this project's cache settings
 
-<ep> is the episode folder name or its number, e.g. 001.
+<ep> is the episode folder name or its number, e.g. 001, or the name of a special in
+specials/ (a video that is not a Short, e.g. a 16:9 explainer; see tools/special.py).
 """
 
 from __future__ import annotations
@@ -56,10 +57,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools import design, lint, qa, report, status, ste  # noqa: E402
+from tools import design, lint, qa, report, special, status, ste  # noqa: E402
 from tools.scriptfile import load_script  # noqa: E402
 
 EPISODES = ROOT / "episodes"
+SPECIALS = special.SPECIALS
 TEMPLATES = ROOT / "templates"
 MEDIA = ROOT / "media"
 EXPORTS = ROOT / "exports"
@@ -71,12 +73,18 @@ VOICE_POLISH = (
 LOUDNORM = "loudnorm=I=-14:TP=-3.0:LRA=11"  # headroom: AAC encoding can push sharp clicks ~1 dB past the target; the limit is -1.5
 
 
+def ref(ep: Path) -> str:
+    """The shortest name vid accepts for an episode: its number, or a special's name."""
+    return ep.name if special.is_special(ep) else ep.name[:3]
+
+
 def episode(name: str) -> Path:
-    if (EPISODES / name).is_dir():
-        return EPISODES / name
-    hits = sorted(p for p in EPISODES.glob(f"{name}*") if p.is_dir())
+    for folder in (EPISODES, SPECIALS):
+        if (folder / name).is_dir():
+            return folder / name
+    hits = sorted(p for folder in (EPISODES, SPECIALS) for p in folder.glob(f"{name}*") if p.is_dir())
     if len(hits) != 1:
-        sys.exit(f"No single episode matches {name!r}. Found: {', '.join(p.name for p in hits) or 'none'}")
+        sys.exit(f"No single episode or special matches {name!r}. Found: {', '.join(p.name for p in hits) or 'none'}")
     return hits[0]
 
 
@@ -96,19 +104,30 @@ def cmd_new(args) -> int:
 
 
 def cmd_status(args) -> int:
-    status.run(episode(args.ep) if args.ep else None)
+    ep = episode(args.ep) if args.ep else None
+    if ep and special.is_special(ep):
+        print(f"{ep.name} is a special: vid status tracks the series only. Its gates are vid check, "
+              f"vid lint, vid align and vid final {ep.name} (tools/special.py).")
+        return 0
+    status.run(ep)
     return 0
 
 
 def cmd_check(args) -> int:
     ep = episode(args.ep)
+    if special.is_special(ep):
+        return 0 if special.check(ep) else 1
     ok = ste.run(ep / "script.md")
     print()
     return 0 if design.run(ep) and ok else 1
 
 
 def cmd_qa(args) -> int:
-    return 0 if qa.run(episode(args.ep), Path(args.video).resolve() if args.video else None) else 1
+    ep = episode(args.ep)
+    video = Path(args.video).resolve() if args.video else None
+    if special.is_special(ep):
+        return 0 if special.run_qa(ep, video) else 1
+    return 0 if qa.run(ep, video) else 1
 
 
 def cmd_frames(args) -> int:
@@ -119,7 +138,7 @@ def cmd_frames(args) -> int:
     if args.render:
         renders = sorted((MEDIA / ep.name / "videos").rglob("Episode.mp4"), key=lambda p: p.stat().st_mtime)
         if not renders:
-            sys.exit(f"No render yet. Make one with: vid preview {ep.name[:3]} --no-open")
+            sys.exit(f"No render yet. Make one with: vid preview {ref(ep)} --no-open")
         video = renders[-1]
     return 0 if frames.run(ep, video, at=args.at) else 1
 
@@ -170,6 +189,27 @@ class Episode(ShortScene):
     def construct(self):
 '''
 
+LANDSCAPE_SCENE_HEAD = '''"""{name}: a landscape special in the series house style (kit/landscape.py).
+
+The approved words live only in script.md; animation work must not rewrite them. Every beat
+starts as an animatic placeholder, but no placeholder or VIS note may survive into a final.
+The frame is 16:9 at the Shorts' scale: STAGE_CENTER, STAGE_WIDTH, STAGE_HEIGHT and
+CAPTION_CENTER come from kit.landscape, the safe area is the 90% title-safe rectangle, and
+wide_header() draws the top band. Register alignment loops before self.play as in a Short
+(`vid align {name}`), and read `vid frames {name} --render` after each preview.
+
+`vid check` asks of this file what it asks of a Short (WORKFLOW.md, step 5): every self.play
+timed as a share of its beat, motion through at least 65% of each beat, B3's mechanism
+replayed in B6 with one shared clock, and causal change in at least 7 beats.
+"""
+
+from kit.landscape import *
+
+
+class Episode(LandscapeScene):
+    def construct(self):
+'''
+
 
 def cmd_scene(args) -> int:
     ep = episode(args.ep)
@@ -179,23 +219,27 @@ def cmd_scene(args) -> int:
     beats = [b for b in load_script(ep / "script.md").beats.values() if b.vo]
     if not beats:
         sys.exit("script.md has no beats with a VO line yet.")
-    lines = [SCENE_HEAD.format(name=ep.name, num=ep.name[:3]).rstrip("\n")]
+    wide = special.video_format(ep) == "landscape"
+    head = LANDSCAPE_SCENE_HEAD if wide else SCENE_HEAD
+    lines = [head.format(name=ep.name, num=ep.name[:3]).rstrip("\n")]
     for beat in beats:
         lines.append(f'        with self.beat("{beat.id}") as b:  # {beat.label}')
         for row in textwrap.wrap(f"VIS: {beat.vis}", 84):
             lines.append(f"            # {row}")
-        lines.append("            self.end_card()" if beat is beats[-1] else "            self.placeholder(b)")
+        # The Connection Map draws the series' pairs; a special ends on its own last beat.
+        last = beat is beats[-1] and not special.is_special(ep)
+        lines.append("            self.end_card()" if last else "            self.placeholder(b)")
         lines.append("")
     lines.append("        self.wait(1)\n")
     target.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Wrote {target.relative_to(ROOT)} with {len(beats)} beats. Watch the animatic: vid preview {ep.name[:3]}")
+    print(f"Wrote {target.relative_to(ROOT)} with {len(beats)} beats. Watch the animatic: vid preview {ref(ep)}")
     return 0
 
 
 def render(ep: Path, width: int, height: int, fps: int, voice: str, guides: bool,
            open_after: bool, align_mode: str = "warn", align_guides: bool = False) -> Path:
     if not (ep / "scene.py").exists():
-        sys.exit(f"No scene.py yet. Make one with: vid scene {ep.name[:3]}")
+        sys.exit(f"No scene.py yet. Make one with: vid scene {ref(ep)}")
     media = MEDIA / ep.name
     cmd = [sys.executable, "-m", "manim", "render", str(ep / "scene.py"), "Episode",
            "-r", f"{width},{height}", "--fps", str(fps), "--media_dir", str(media)]
@@ -221,12 +265,14 @@ def render(ep: Path, width: int, height: int, fps: int, voice: str, guides: bool
 
 def cmd_preview(args) -> int:
     ep = episode(args.ep)
-    video = render(ep, 540, 960, 30, args.voice, args.guides, open_after=not args.no_open)
+    video = render(ep, *special.frame_size(ep, final=False), 30, args.voice, args.guides,
+                   open_after=not args.no_open)
     print(f"\nPreview: {video.relative_to(ROOT)}")
     pace = None if args.voice else qa.narration_pace(ep)
     if pace:
         words, talk, wpm = pace
-        lo, hi = design.load_section(qa.Limits, "qa").delivery_wpm
+        limits = special.qa_limits(ep) if special.is_special(ep) else design.load_section(qa.Limits, "qa")
+        lo, hi = limits.delivery_wpm
         verdict = "inside" if lo <= wpm <= hi else "OUTSIDE"
         print(f"Narration pace: {wpm} words/min ({words} words in {talk:.1f} s); {verdict} vid qa's "
               f"delivery-pace band of {lo:g}-{hi:g}.")
@@ -237,7 +283,7 @@ def cmd_preview(args) -> int:
 
 def cmd_align(args) -> int:
     ep = episode(args.ep)
-    video = render(ep, 540, 960, 30, args.voice, guides=True,
+    video = render(ep, *special.frame_size(ep, final=False), 30, args.voice, guides=True,
                    open_after=not args.no_open, align_mode="warn", align_guides=True)
     report_path = MEDIA / ep.name / "alignment-report.json"
     if not report_path.exists():
@@ -282,25 +328,30 @@ def cmd_audition(args) -> int:
         seconds = len(samples) / rate
         print(f"  {voice:<11} {seconds:5.1f} s  {words / seconds * 60:4.0f} words/min")
     print(f"\nListen: {out.relative_to(ROOT)}  (the series voice is frozen in voice.toml; "
-          f"try another with: vid preview {ep.name[:3]} --voice kokoro:<voice>)")
+          f"try another with: vid preview {ref(ep)} --voice kokoro:<voice>)")
     return 0
 
 
 def cmd_final(args) -> int:
     ep = episode(args.ep)
-    if not ste.run(ep / "script.md") and not args.force:
-        sys.exit("\nThe narration is below the STE target. Fix script.md, or add --force.")
-    print()
-    if not design.run(ep, final=True) and not args.force:
-        sys.exit("\nA design rule fails (see RESEARCH.md for why it matters). Fix it, or add --force.")
+    is_special = special.is_special(ep)
+    if is_special:
+        if not special.check(ep, final=True) and not args.force:
+            sys.exit("\nThe STE score or a design rule fails (see RESEARCH.md for why it matters). Fix it, or add --force.")
+    else:
+        if not ste.run(ep / "script.md") and not args.force:
+            sys.exit("\nThe narration is below the STE target. Fix script.md, or add --force.")
+        print()
+        if not design.run(ep, final=True) and not args.force:
+            sys.exit("\nA design rule fails (see RESEARCH.md for why it matters). Fix it, or add --force.")
     print()
     if not lint.run(ep) and not args.force:
         sys.exit("\nThis episode carries material over from an earlier one. Fix it, or add --force.")
-    video = render(ep, 1080, 1920, 60, args.voice, guides=False, open_after=False,
+    video = render(ep, *special.frame_size(ep, final=True), 60, args.voice, guides=False, open_after=False,
                    align_mode="strict", align_guides=False)
     music = Path(args.music) if args.music else next(iter(sorted(ep.glob("music.*"))), None)
-    EXPORTS.mkdir(exist_ok=True)
-    out = EXPORTS / f"{ep.name}.mp4"
+    out = special.export_path(ep) if is_special else EXPORTS / f"{ep.name}.mp4"
+    out.parent.mkdir(exist_ok=True)
     cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(video)]
     if music:
         cmd += ["-stream_loop", "-1", "-i", str(music), "-filter_complex",
@@ -317,10 +368,10 @@ def cmd_final(args) -> int:
         shutil.copy(srt, out.with_suffix(".srt"))
     print(f"\nExported: {out.relative_to(ROOT)}" + (" (+ .srt to upload as captions)" if srt.exists() else ""))
     print()
-    if not qa.run(ep, out):
-        print(f"\nThe export fails QA. Fix the cause, then run vid final {ep.name[:3]} again.")
+    if not (special.run_qa(ep, out) if is_special else qa.run(ep, out)):
+        print(f"\nThe export fails QA. Fix the cause, then run vid final {ref(ep)} again.")
         return 1
-    print(f"\nDone. Next: vid frames {ep.name[:3]}, read every sheet, then fill publish.md.")
+    print(f"\nDone. Next: vid frames {ref(ep)}, read every sheet" + ("." if is_special else ", then fill publish.md."))
     return 0
 
 

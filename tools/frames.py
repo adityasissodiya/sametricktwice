@@ -14,6 +14,9 @@ With --at it grabs frames at chosen seconds instead, for the moments the grid mi
 
     media/<ep>/frames/moments.png   one frame per requested second, four to a row
 
+A landscape special (tools/special.py) is cut at a third of its 1920x1080 master instead,
+the size of a laptop player, and its master and picture rules are the special's own.
+
 Usage: vid frames <ep> [--video FILE | --render] [--at SECONDS ...]
 """
 
@@ -27,7 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import visual_quality  # noqa: E402
+from tools import special, visual_quality  # noqa: E402
 from tools.design import load_section, show  # noqa: E402
 from tools.qa import EXPORTS, MEDIA, Limits, beat_times, parse_srt, picture_results  # noqa: E402
 from tools.scriptfile import load_script  # noqa: E402
@@ -50,23 +53,25 @@ def moments(t0: float, t1: float) -> list[float]:
 
 def timed(ep: Path, video: Path | None = None) -> tuple[Path, dict[str, tuple[float, float]]]:
     """The video to read and each beat's start and end, from the captions beside it."""
-    video = video or EXPORTS / f"{ep.name}.mp4"
+    video = video or (special.export_path(ep) if special.is_special(ep) else EXPORTS / f"{ep.name}.mp4")
     srt = video.with_suffix(".srt")
     if not video.exists() or not srt.exists():
-        sys.exit(f"Need {video.name} and its .srt. Make them with: vid final {ep.name[:3]}")
+        name = ep.name if special.is_special(ep) else ep.name[:3]
+        sys.exit(f"Need {video.name} and its .srt. Make them with: vid final {name}")
     times, problems = beat_times(load_script(ep / "script.md"), parse_srt(srt.read_text(encoding="utf-8")))
     if problems:
         sys.exit("The captions do not match script.md: " + problems[0])
     return video, times
 
 
-def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3) -> list[Path]:
+def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3,
+                   size: tuple[int, int] = PHONE) -> list[Path]:
     from PIL import Image, ImageDraw
 
     video, times = timed(ep, video)
     out = MEDIA / ep.name / "frames"
     out.mkdir(parents=True, exist_ok=True)
-    w, h = PHONE
+    w, h = size
     pad, head = 10, 26
     ids = list(times)
     sheets = []
@@ -78,7 +83,7 @@ def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3) -> l
             for col, (label, t) in enumerate(zip(MOMENTS, moments(*times[beat_id]))):
                 x, y = pad + col * (w + pad), pad + row * (h + head + pad)
                 draw.text((x + 2, y + 6), f"{beat_id} {label}  {t:5.2f} s", fill="#ECEFF4")
-                frame = grab(video, t, out / f"{beat_id}-{label}.png")
+                frame = grab(video, t, out / f"{beat_id}-{label}.png", size)
                 with Image.open(frame) as im:
                     sheet.paste(im.convert("RGB"), (x, y + head))
         path = out / f"sheet-{n}.png"
@@ -89,7 +94,8 @@ def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3) -> l
     return sheets
 
 
-def moment_sheet(ep: Path, video: Path, seconds: list[float], cols: int = 4) -> Path:
+def moment_sheet(ep: Path, video: Path, seconds: list[float], cols: int = 4,
+                 size: tuple[int, int] = PHONE) -> Path:
     """One phone-size frame per requested second, labeled, in a single sheet."""
     from PIL import Image, ImageDraw
 
@@ -97,7 +103,7 @@ def moment_sheet(ep: Path, video: Path, seconds: list[float], cols: int = 4) -> 
     out.mkdir(parents=True, exist_ok=True)
     for old in out.glob("at-*.png"):
         old.unlink()
-    w, h = PHONE
+    w, h = size
     pad, head = 10, 26
     rows = (len(seconds) + cols - 1) // cols
     sheet = Image.new("RGB", (min(cols, len(seconds)) * (w + pad) + pad, rows * (h + head + pad) + pad), "#202634")
@@ -105,7 +111,7 @@ def moment_sheet(ep: Path, video: Path, seconds: list[float], cols: int = 4) -> 
     for i, t in enumerate(seconds):
         x, y = pad + (i % cols) * (w + pad), pad + (i // cols) * (h + head + pad)
         draw.text((x + 2, y + 6), f"{t:6.2f} s", fill="#ECEFF4")
-        with Image.open(grab(video, t, out / f"at-{t:07.2f}.png")) as im:
+        with Image.open(grab(video, t, out / f"at-{t:07.2f}.png", size)) as im:
             sheet.paste(im.convert("RGB"), (x, y + head))
     path = out / "moments.png"
     sheet.save(path)
@@ -121,14 +127,18 @@ def picture_check(video: Path, times: dict[str, tuple[float, float]]) -> bool:
 
 def run(ep: Path, video: Path | None = None, at: list[float] | None = None) -> bool:
     video, times = timed(ep, video)
+    size = special.thumb_size(ep)
     if at:
-        print(f"  {moment_sheet(ep, video, at).relative_to(ROOT)}")
+        print(f"  {moment_sheet(ep, video, at, size=size).relative_to(ROOT)}")
         return True
-    for path in contact_sheets(ep, video):
+    for path in contact_sheets(ep, video, size=size):
         print(f"  {path.relative_to(ROOT)}")
     print("\nRead every sheet: labels legible at this size, nothing under the Shorts UI, nothing "
           "left over from another episode, and one focal idea per frame.\n")
-    picture_check(video, times)
+    if special.is_special(ep):
+        special.picture_check(ep, video, times)
+    else:
+        picture_check(video, times)
     return True
 
 
