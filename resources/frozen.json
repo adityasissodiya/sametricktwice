@@ -1,0 +1,210 @@
+{
+ "Flow": {
+  "family": 6,
+  "height": 0.18,
+  "parts": 5,
+  "points": 160,
+  "width": 1.78
+ },
+ "battery": {
+  "family": 7,
+  "height": 1.12,
+  "parts": 4,
+  "points": 60,
+  "width": 0.62
+ },
+ "bridge": {
+  "family": 4,
+  "height": 0.7,
+  "parts": 3,
+  "points": 68,
+  "width": 3.3
+ },
+ "building": {
+  "family": 9,
+  "height": 1.0,
+  "parts": 2,
+  "points": 128,
+  "width": 1.3
+ },
+ "clock": {
+  "family": 17,
+  "height": 1.0,
+  "parts": 4,
+  "points": 88,
+  "width": 1.0
+ },
+ "coin": {
+  "family": 3,
+  "height": 0.44,
+  "parts": 2,
+  "points": 64,
+  "width": 0.44
+ },
+ "cross": {
+  "family": 3,
+  "height": 0.32,
+  "parts": 2,
+  "points": 8,
+  "width": 0.32
+ },
+ "doc": {
+  "family": 7,
+  "height": 0.98,
+  "parts": 3,
+  "points": 44,
+  "width": 0.78
+ },
+ "eye": {
+  "family": 5,
+  "height": 0.313,
+  "parts": 2,
+  "points": 96,
+  "width": 0.84
+ },
+ "flag": {
+  "family": 3,
+  "height": 0.9,
+  "parts": 2,
+  "points": 16,
+  "width": 0.46
+ },
+ "flame": {
+  "family": 3,
+  "height": 1.116,
+  "parts": 2,
+  "points": 96,
+  "width": 0.724
+ },
+ "gauge": {
+  "family": 5,
+  "height": 1.03,
+  "parts": 4,
+  "points": 140,
+  "width": 1.9
+ },
+ "gear": {
+  "family": 3,
+  "height": 0.859,
+  "parts": 2,
+  "points": 192,
+  "width": 0.876
+ },
+ "house": {
+  "family": 4,
+  "height": 0.42,
+  "parts": 3,
+  "points": 44,
+  "width": 0.44
+ },
+ "key": {
+  "family": 7,
+  "height": 0.585,
+  "parts": 4,
+  "points": 112,
+  "width": 1.5
+ },
+ "laptop": {
+  "family": 3,
+  "height": 0.53,
+  "parts": 2,
+  "points": 48,
+  "width": 0.96
+ },
+ "lens": {
+  "family": 3,
+  "height": 0.846,
+  "parts": 2,
+  "points": 36,
+  "width": 0.846
+ },
+ "monitor": {
+  "family": 8,
+  "height": 0.905,
+  "parts": 4,
+  "points": 128,
+  "width": 1.0
+ },
+ "padlock": {
+  "family": 7,
+  "height": 0.53,
+  "parts": 3,
+  "points": 104,
+  "width": 0.42
+ },
+ "panel": {
+  "family": 1,
+  "height": 1.0,
+  "parts": 0,
+  "points": 32,
+  "width": 1.6
+ },
+ "person": {
+  "family": 3,
+  "height": 0.77,
+  "parts": 2,
+  "points": 64,
+  "width": 0.62
+ },
+ "phase_pill": {
+  "family": 9,
+  "parts": 3
+ },
+ "phase_pills": {
+  "family": 17,
+  "parts": 2
+ },
+ "plate": {
+  "family": 5,
+  "height": 2.3,
+  "parts": 2,
+  "points": 96,
+  "width": 2.3
+ },
+ "ring": {
+  "family": 1,
+  "height": 0.54,
+  "parts": 0,
+  "points": 32,
+  "width": 0.54
+ },
+ "seal": {
+  "family": 3,
+  "height": 0.17,
+  "parts": 2,
+  "points": 64,
+  "width": 0.17
+ },
+ "server": {
+  "family": 10,
+  "height": 0.84,
+  "parts": 3,
+  "points": 140,
+  "width": 0.62
+ },
+ "stamp": {
+  "family": 7,
+  "parts": 2
+ },
+ "star": {
+  "family": 1,
+  "height": 0.434,
+  "parts": 0,
+  "points": 40,
+  "width": 0.457
+ },
+ "tick": {
+  "family": 1,
+  "height": 0.27,
+  "parts": 0,
+  "points": 8,
+  "width": 0.34
+ },
+ "truck": {
+  "family": 6,
+  "height": 0.525,
+  "parts": 3,
+  "points": 128,
+  "width": 1.13
+ }
+}

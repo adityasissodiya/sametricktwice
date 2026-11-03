@@ -3,7 +3,8 @@
 How one episode goes from an idea to an upload, one step at a time. `vid status <ep>` shows
 which step an episode is on and prints the next action. Each step below says what to make,
 which command checks it (its gate), and when it is done. Do the steps in order; the reasons
-behind the rules are in RESEARCH.md.
+behind the rules are in RESEARCH.md. Read only the step you are on; `resources/README.md` lists
+the reference pages for the API, the gates and the recipes.
 
 ## The format
 
@@ -151,8 +152,8 @@ decorative entrances and static swaps do not count as causal motion.
 Replace one placeholder at a time, in order. For each beat:
 
 1. Read the beat's VIS line and the brief's "Infographic direction".
-2. Build it with kit parts (`kit/parts.py`, `ShortScene`) and fresh drawings for this
-   episode. Inside a beat, `b.duration` is the narration time; time every animation as a
+2. Build it with kit and resources parts (`resources/KIT.md`, `resources/README.md`) and fresh
+   drawings for this episode. Inside a beat, `b.duration` is the narration time; time every animation as a
    fraction of it and end with `self.hold(b)`.
 3. **Animate only the change.** Draw the stable diagram, hold it still while the narration
    points at it, and move only the part that changes. One motion path at a time.

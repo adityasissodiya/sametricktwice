@@ -77,7 +77,7 @@ next thing to do. Here is Episode 004:
 ```
 
 Under the hood: a Manim toolkit (`kit/`) for the house style, captions, sound cues and alignment
-checks; a script parser, STE checker, design rules and export QA (`tools/`); and 127 unit tests
+checks; a script parser, STE checker, design rules and export QA (`tools/`); and 191 unit tests
 (`tests/`).
 
 ## Try it: render Episode 004 yourself
@@ -156,6 +156,7 @@ All five play on the [showcase page](https://adityasissodiya.github.io/sametrick
 | [AGENTS.md](AGENTS.md) | the contract: the work loop, what needs approval, the rules every Short follows |
 | [WORKFLOW.md](WORKFLOW.md) | the walkthrough: ten steps from a pair of ideas to the upload and the numbers after it |
 | [STYLE_GUIDE.md](STYLE_GUIDE.md) | the visual, motion, caption, sound and alignment language |
+| [resources/](resources/README.md) | the API, every gate and its usual fix, recipes and traps, and ready-made parts, so an agent need not read the code |
 | [RESEARCH.md](RESEARCH.md) | why: each rule, its evidence, its limit, the check that enforces it, and what earns money |
 
 Episode 001 (Camera × Chip) is the rendered style reference. Episode 003 (Atomic-Bomb Project ×
@@ -182,6 +183,8 @@ episodes/<ep>/        brief.md (facts + sources), script.md (words), scene.py (v
 kit/                  Manim toolkit: style, parts, ShortScene, captions, Connection Map,
                       alignment checks, voices; kit/sfx/ holds the house sounds, kit/fonts/
                       the open-licence fonts used where the Windows house fonts are missing
+resources/            reference pages (KIT, GATES, PLAYBOOK), a complete example scene and optional
+                      parts from finished videos, with their look and limits pinned by tests
 tools/                vid command, script parser, STE check, design rules, carry-over lint,
                       export QA, contact sheets, status tracker, analytics report
 tests/                unit tests for every check and kit part (`vid test`)

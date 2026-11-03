@@ -88,7 +88,41 @@ def episode(name: str) -> Path:
     return hits[0]
 
 
+SPECIAL_LIMITS = """\
+# Limits for this special only; tools/special.py overlays them on ste.toml and on design.toml [qa].
+# Every other limit keeps the series value. Each key needs the creator's approval and a comment
+# that says why: quote what they asked for. Uncomment only what they approved.
+
+# [ste]
+# seconds = [150, 240]   # length estimate in `vid check`
+
+# [qa]
+# seconds = [150, 240]   # measured length of the master in `vid qa`
+"""
+
+
+def new_special(name: str) -> int:
+    """A landscape special in specials/<name>/, kept out of git by .gitignore."""
+    if not re.fullmatch(r"[a-z][a-z0-9-]*", name):
+        sys.exit("Name a special in lowercase words with hyphens, like power-grid-basics.")
+    dest = SPECIALS / name
+    if dest.exists():
+        sys.exit(f"specials/{name} already exists.")
+    dest.mkdir(parents=True)
+    for file in ("brief.md", "script.md"):
+        text = (TEMPLATES / file).read_text(encoding="utf-8").replace("{slug}", name)
+        if file == "script.md":
+            text = text.replace("glossary:\n", "glossary:\nformat: landscape\n", 1)
+        (dest / file).write_text(text, encoding="utf-8")
+    (dest / "limits.toml").write_text(SPECIAL_LIMITS, encoding="utf-8")
+    print(f"Created specials/{name}. Next: read resources/PLAYBOOK.md, \"Making a special\"; "
+          "agree the angle and the narration with the creator before you animate.")
+    return 0
+
+
 def cmd_new(args) -> int:
+    if args.special:
+        return new_special(args.slug)
     if not re.fullmatch(r"\d{3}-[a-z0-9-]+", args.slug):
         sys.exit("Name it like 004-film-x-explosives: three digits, then lowercase words.")
     dest = EPISODES / args.slug
@@ -107,7 +141,7 @@ def cmd_status(args) -> int:
     ep = episode(args.ep) if args.ep else None
     if ep and special.is_special(ep):
         print(f"{ep.name} is a special: vid status tracks the series only. Its gates are vid check, "
-              f"vid lint, vid align and vid final {ep.name} (tools/special.py).")
+              f"vid lint, vid align and vid final {ep.name} (resources/PLAYBOOK.md, \"Making a special\").")
         return 0
     status.run(ep)
     return 0
@@ -140,7 +174,7 @@ def cmd_frames(args) -> int:
         if not renders:
             sys.exit(f"No render yet. Make one with: vid preview {ref(ep)} --no-open")
         video = renders[-1]
-    return 0 if frames.run(ep, video, at=args.at) else 1
+    return 0 if frames.run(ep, video, at=args.at, beats=args.beats) else 1
 
 
 def cmd_report(args) -> int:
@@ -167,9 +201,10 @@ The approved words live only in script.md; animation work must not rewrite them.
 starts as an animatic placeholder, but no placeholder or VIS note may survive into a final.
 Write every label, header and diagram for this episode; never paste from another episode's
 scene. Use self.sfx("name.wav") for kit/sfx sounds and run `vid lint {num}`.
-Read AGENTS.md and STYLE_GUIDE.md. For each layout keyframe, register centered/mirror/row/
-column/safe-area constraints with ``self.alignment_loop(...)`` before ``self.play``. Refine
-with ``vid align {num}``, then check the phone-safe preview with ``vid preview {num} --guides``.
+Read AGENTS.md and STYLE_GUIDE.md; resources/README.md lists ready parts and recipes. For each
+layout keyframe, register centered/mirror/row/column/safe-area constraints with
+``self.alignment_loop(...)`` before ``self.play``. Refine with ``vid align {num}``, then check the
+phone-safe preview with ``vid preview {num} --guides``.
 
 What `vid check` asks of this file (WORKFLOW.md, step 5, has the details):
 - Time every self.play as a share of its beat, e.g. run_time=0.2 * b.duration. Plan motion
@@ -183,9 +218,10 @@ After each preview, `vid frames {num} --render` prints the picture rules that vi
 """
 
 from kit import *
+from resources import *
 
 
-class Episode(ShortScene):
+class Episode(StageTools, ShortScene):
     def construct(self):
 '''
 
@@ -200,13 +236,15 @@ wide_header() draws the top band. Register alignment loops before self.play as i
 
 `vid check` asks of this file what it asks of a Short (WORKFLOW.md, step 5): every self.play
 timed as a share of its beat, motion through at least 65% of each beat, B3's mechanism
-replayed in B6 with one shared clock, and causal change in at least 7 beats.
+replayed in B6 with one shared clock, and causal change in at least 7 beats. resources/README.md
+lists ready parts and recipes; resources/example_scene.py is a complete scene to read first.
 """
 
 from kit.landscape import *
+from resources import *
 
 
-class Episode(LandscapeScene):
+class Episode(StageTools, LandscapeScene):
     def construct(self):
 '''
 
@@ -419,6 +457,7 @@ def main() -> int:
     p.set_defaults(fn=cmd_status)
     p = sub.add_parser("new")
     p.add_argument("slug")
+    p.add_argument("--special", action="store_true", help="a private landscape special, not a Short")
     p.set_defaults(fn=cmd_new)
     p = sub.add_parser("check")
     p.add_argument("ep")
@@ -462,6 +501,7 @@ def main() -> int:
     p.add_argument("--video")
     p.add_argument("--render", action="store_true")
     p.add_argument("--at", nargs="+", type=float, metavar="SECONDS")
+    p.add_argument("--beats", nargs="+", metavar="BEAT", help="sheets for these beats only, while you fix them")
     p.set_defaults(fn=cmd_frames)
     sub.add_parser("report").set_defaults(fn=cmd_report)
     sub.add_parser("test").set_defaults(fn=cmd_test)

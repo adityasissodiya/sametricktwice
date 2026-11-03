@@ -65,7 +65,9 @@ def timed(ep: Path, video: Path | None = None) -> tuple[Path, dict[str, tuple[fl
 
 
 def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3,
-                   size: tuple[int, int] = PHONE) -> list[Path]:
+                   size: tuple[int, int] = PHONE, beats: list[str] | None = None) -> list[Path]:
+    """One sheet per `per_sheet` beats, plus the cover. With `beats`, only those beats and no
+    cover, in beats-N.png files, so a partial look never passes for the full sheets."""
     from PIL import Image, ImageDraw
 
     video, times = timed(ep, video)
@@ -74,6 +76,11 @@ def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3,
     w, h = size
     pad, head = 10, 26
     ids = list(times)
+    if beats:
+        unknown = [b for b in beats if b not in times]
+        if unknown:
+            sys.exit(f"No beat {', '.join(unknown)} in this video. It has: {', '.join(ids)}")
+        ids = [b for b in ids if b in beats]
     sheets = []
     for n, first in enumerate(range(0, len(ids), per_sheet), 1):
         group = ids[first:first + per_sheet]
@@ -86,9 +93,11 @@ def contact_sheets(ep: Path, video: Path | None = None, per_sheet: int = 3,
                 frame = grab(video, t, out / f"{beat_id}-{label}.png", size)
                 with Image.open(frame) as im:
                     sheet.paste(im.convert("RGB"), (x, y + head))
-        path = out / f"sheet-{n}.png"
+        path = out / f"{'beats' if beats else 'sheet'}-{n}.png"
         sheet.save(path)
         sheets.append(path)
+    if beats:
+        return sheets
     t0, t1 = times[ids[0]]
     sheets.append(grab(video, (t0 + t1) / 2, out / "cover.png", size=None))
     return sheets
@@ -125,16 +134,20 @@ def picture_check(video: Path, times: dict[str, tuple[float, float]]) -> bool:
     return show(f"Picture checks on {video.name} (the limits of vid qa)", results)
 
 
-def run(ep: Path, video: Path | None = None, at: list[float] | None = None) -> bool:
+def run(ep: Path, video: Path | None = None, at: list[float] | None = None, beats: list[str] | None = None) -> bool:
     video, times = timed(ep, video)
     size = special.thumb_size(ep)
     if at:
         print(f"  {moment_sheet(ep, video, at, size=size).relative_to(ROOT)}")
         return True
-    for path in contact_sheets(ep, video, size=size):
+    for path in contact_sheets(ep, video, size=size, beats=beats):
         print(f"  {path.relative_to(ROOT)}")
-    print("\nRead every sheet: labels legible at this size, nothing under the Shorts UI, nothing "
-          "left over from another episode, and one focal idea per frame.\n")
+    if beats:
+        print("\nOnly the beats you asked for. Read all the sheets, without --beats, before and "
+              "after vid final.\n")
+    else:
+        print("\nRead every sheet: labels legible at this size, nothing under the Shorts UI, nothing "
+              "left over from another episode, and one focal idea per frame.\n")
     if special.is_special(ep):
         special.picture_check(ep, video, times)
     else:

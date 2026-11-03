@@ -7,7 +7,8 @@ Manim infographic animation with a frozen synthetic narrator. The goal is a Shor
 original work can earn (see RESEARCH.md, "What earns money here").
 
 This file is the contract. `WORKFLOW.md` is the step-by-step walkthrough, `STYLE_GUIDE.md` is
-the visual and audio language, and `RESEARCH.md` explains why each rule exists. Episode 001
+the visual and audio language, `RESEARCH.md` explains why each rule exists, and `resources/`
+holds the reference pages and the building blocks from finished videos. Episode 001
 is the rendered reference for style; Episode 003 is the reference for the current source,
 picture and sound gates (its scene passed them all). Copy their principles, never their
 subjects.
@@ -27,9 +28,15 @@ Rules for the loop:
 - Never skip a step or start one before the gate before it passes.
 - Never use `--force`, never loosen a limit in `design.toml`, `ste.toml` or the alignment
   tolerance, and never disable a check to get past a failure. Fix the cause.
-- When a check fails, look up the rule in RESEARCH.md first: the reason tells you the fix.
+- Learn the pipeline from the pages `resources/README.md` lists. Do not read `tools/`, `kit/` or
+  old scenes to find out how something works, unless the pages do not answer it; then fix the
+  page in the same change.
+- When a check fails, look up the rule in `resources/GATES.md` first: it says what the rule
+  measures and the usual fix. RESEARCH.md has the evidence behind it.
 - You cannot watch a video, so read it: `vid frames <ep>` (or `--render` for a preview)
-  writes contact sheets at phone size. Open every sheet after every render you judge.
+  writes contact sheets at phone size. Open every sheet after every render you judge. While you
+  fix a few beats, `--beats B3 B6` makes sheets of those only; read them all before and after
+  `vid final`.
 - Report honestly. If a gate fails and you cannot fix it, say which gate and why; never call
   an episode finished while `vid status <ep>` shows an open step.
 
@@ -39,6 +46,7 @@ These need the creator's explicit approval. Propose; do not do.
 
 - Changing the narrator: anything in `voice.toml` (speaker, speed, pauses, model).
 - Changing a limit in `design.toml`, `ste.toml` or `series.toml`, or the alignment tolerance.
+- Changing a frozen number in `resources/GATES.md` or a part's shape in `resources/frozen.json`.
 - Changing VO in a script after the creator approved it.
 - Changing the house style (palette, fonts, caption form, the nine-beat format).
 - Uploading, publishing, or posting anything outside this folder.
@@ -141,13 +149,21 @@ content" rule demonetizes.
   because they are truly part of this topic.
 - The Connection Map shows this episode's pair only. `end_card(series=True)` draws earlier
   pairs and is for compilations, never for a single Short.
-- Shared code and sound live in `kit/`. Play house sounds with `self.sfx("name.wav")` from
+- Shared code and sound live in `kit/`, and optional drawn parts in `resources/`. Play house sounds with `self.sfx("name.wav")` from
   `kit/sfx`; add a new house sound there once, named for what it sounds like. Never copy a
   sound file into an episode, and never save one sound under two names.
 - Episode files (scene, brief, script, publish) must not mention another episode's number or
   folder name.
 - `vid lint <episode>` checks all of this against every earlier episode, and `vid final`
   refuses to render while it fails.
+
+## Specials
+
+A special is a video that is not a Short: a longer explainer, a companion, a landing video.
+`vid new --special <name>` starts one in `specials/<name>/`, in 16:9, with its own `limits.toml`.
+`.gitignore` keeps that folder out of this public repository, because a special can come from
+unpublished work: never name one or its subject in a tracked file. Agree the angle and the
+narration with the creator before you animate. `resources/PLAYBOOK.md` has the steps.
 
 ## Required alignment refinement loop
 
@@ -177,19 +193,21 @@ resolution and export settings to this folder.
 | `vid setup` | a new machine in one go: pinned tools, Python 3.12, packages, voice model, tests |
 | `vid status [<ep>]` | see the current step and the next action |
 | `vid new <slug>` | start an episode (`004-film-x-explosives`) from the templates |
+| `vid new --special <name>` | start a private landscape special in `specials/<name>/` |
 | `vid check <ep>` | STE score and the design rules (script, brief, scene) |
 | `vid lint <ep>` | carry-over check against every earlier episode |
 | `vid scene <ep>` | write the animatic `scene.py` (one placeholder per beat) |
 | `vid preview <ep> --guides --no-open` | fast 540x960 render with the Shorts UI marked; prints the narration pace |
 | `vid frames <ep> [--render]` | contact sheets of every beat, then `vid qa`'s picture rules on that render |
 | `vid frames <ep> --render --at S ...` | one frame per given second, for moments the sheets miss |
+| `vid frames <ep> --render --beats B3 B6` | sheets of those beats only, while you fix them |
 | `vid align <ep> --no-open` | guide render plus the alignment report |
 | `vid audition <ep>` | phonemes and other Kokoro voices for a few beats |
 | `vid final <ep>` | all gates, then the 1080x1920 60 fps master and `vid qa` |
 | `vid qa <ep>` | measure the export against the research targets |
 | `vid report` | channel results next to each episode's measurements |
 | `vid test` | the unit tests; run them after any change to `tools/` or `kit/` |
-| `vid ci` | `check` and `lint` for every scripted episode |
+| `vid ci` | `check` and `lint` for every scripted episode and local special |
 | `vid doctor` | tool versions, cache locations, free disk space |
 
 A Short is finished only when `vid status <ep>` shows steps 1-7 done, the contact sheets
@@ -200,8 +218,9 @@ and narration masking.
 
 ## Repository discipline
 
-- Reuse or extend `kit/` for components that will appear in another episode, and add a test
-  in `tests/` for every new check or kit part. Run `vid test` before you hand over.
+- Reuse or extend `kit/` for what every video stands on, and `resources/` for optional parts
+  that a second video could use (`resources/README.md` says what belongs there). Add a test in
+  `tests/` for every new check or kit part. Run `vid test` before you hand over.
 - Keep research claims out of visuals until they exist in the brief's ledger.
 - Use public-domain or properly licensed archival media and record the license in
   `publish.md`. Keep logos out of the art; brand names can appear as plain text.

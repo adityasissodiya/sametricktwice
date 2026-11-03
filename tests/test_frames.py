@@ -13,8 +13,39 @@ from tools import frames
 
 
 def fake_grab(video: Path, t: float, out: Path, size=frames.PHONE) -> Path:
-    Image.new("RGB", size, "#123456").save(out)
+    Image.new("RGB", size or frames.PHONE, "#123456").save(out)
     return out
+
+
+class PartialSheetTests(unittest.TestCase):
+    TIMES = {"B1": (0.0, 3.0), "B2": (3.0, 6.0), "B3": (6.0, 9.0), "B4": (9.0, 12.0)}
+
+    def sheets(self, media: Path, **kwargs) -> list[Path]:
+        with (mock.patch.object(frames, "MEDIA", media),
+              mock.patch.object(frames, "timed", return_value=(Path("v.mp4"), self.TIMES)),
+              mock.patch.object(frames, "grab", side_effect=fake_grab)):
+            return frames.contact_sheets(Path("009-kettle-x-rocket"), **kwargs)
+
+    def test_all_beats_make_full_sheets_and_a_cover(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            names = [p.name for p in self.sheets(Path(tmp))]
+        self.assertEqual(names, ["sheet-1.png", "sheet-2.png", "cover.png"])
+
+    def test_chosen_beats_cannot_pass_for_the_full_sheets(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = self.sheets(Path(tmp), beats=["B3", "B1"])
+            names = [p.name for p in paths]
+            w, h = frames.PHONE
+            with Image.open(paths[0]) as sheet:
+                self.assertEqual(sheet.size, (3 * (w + 10) + 10, 2 * (h + 26 + 10) + 10))  # two beats, three frames each
+            frames_made = sorted(p.name for p in paths[0].parent.glob("B*.png"))
+        self.assertEqual(names, ["beats-1.png"])
+        self.assertEqual(frames_made, [f"{b}-{m}.png" for b in ("B1", "B3") for m in sorted(frames.MOMENTS)])
+
+    def test_an_unknown_beat_is_an_error_that_lists_the_real_ones(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(SystemExit, "B9.*B1, B2, B3, B4"):
+                self.sheets(Path(tmp), beats=["B9"])
 
 
 class MomentSheetTests(unittest.TestCase):

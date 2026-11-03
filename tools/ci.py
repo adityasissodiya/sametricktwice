@@ -1,8 +1,9 @@
-"""The text and logic gates for every scripted episode (`vid ci`).
+"""The text and logic gates for every scripted episode and local special (`vid ci`).
 
 Every episode whose script is written (step 2 of `vid status`) must pass `vid check` (STE and
-the design rules) and `vid lint` (carry-over). Episodes still in research are skipped. Nothing
-is rendered here; `vid final` and `vid qa` render and measure the export.
+the design rules) and `vid lint` (carry-over). Episodes still in research are skipped. So must
+every scripted, animated special on this machine; specials are not in git, so a fresh clone has
+none. Nothing is rendered here; `vid final` and `vid qa` render and measure the export.
 
 Usage: python tools/ci.py   (exit 1 if any episode fails)
 """
@@ -16,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools import design, lint, status, ste  # noqa: E402
+from tools import design, lint, special, status, ste  # noqa: E402
 
 
 def main() -> int:
@@ -29,6 +30,13 @@ def main() -> int:
         ok = ste.run(ep / "script.md")
         print()
         ok = design.run(ep) and ok
+        print()
+        ok = lint.run(ep) and ok
+        print("\n" + "-" * 72 + "\n")
+        if not ok:
+            failed.append(ep.name)
+    for ep in sorted(p for p in special.SPECIALS.glob("*") if (p / "scene.py").exists()):
+        ok = special.check(ep)
         print()
         ok = lint.run(ep) and ok
         print("\n" + "-" * 72 + "\n")

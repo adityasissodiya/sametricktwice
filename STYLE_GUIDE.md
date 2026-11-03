@@ -48,6 +48,7 @@ backfire when it decorates (RESEARCH.md, "Signaling").
   license. Do not use an image where a clear diagram can explain the mechanism better.
 - Move any component likely to recur into `kit/`. The top-band `beat_header`, `date_badge`,
   text-sized `pill` labels and the `text`/`title` type helpers already live in `kit/parts.py`.
+  Optional parts harvested from finished videos live in `resources/` (see its README).
   Helpers in Episode 001 show the intended construction of chips, cameras, process cards,
   rays and mechanism stacks.
 

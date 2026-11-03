@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest import mock
 
 from tests.episode_fixture import write_script
-from tools import special, vid
+from tools import ci, special, vid
 from tools.scriptfile import load_script
 
 
@@ -104,6 +104,50 @@ class LookupTests(unittest.TestCase):
                 self.assertFalse(special.is_special(episodes / "001-kettle-x-rocket"))
                 self.assertEqual(vid.ref(ep), "wide-explainer")
                 self.assertEqual(vid.ref(episodes / "001-kettle-x-rocket"), "001")
+
+
+class NewSpecialTests(unittest.TestCase):
+    def make(self, root: Path, name: str = "wide-explainer") -> Path:
+        with (mock.patch.object(vid, "SPECIALS", root), mock.patch("builtins.print")):
+            self.assertEqual(vid.new_special(name), 0)
+        return root / name
+
+    def test_it_starts_a_landscape_special_with_its_limits_commented_out(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ep = self.make(Path(tmp))
+            self.assertEqual(sorted(p.name for p in ep.iterdir()), ["brief.md", "limits.toml", "script.md"])
+            self.assertEqual(special.video_format(ep), "landscape")
+            self.assertEqual(special.overlay(ep, "qa"), {})  # nothing moves until the creator approves it
+
+    def test_it_refuses_a_bad_name_and_an_existing_folder(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.make(root)
+            with mock.patch.object(vid, "SPECIALS", root):
+                with self.assertRaises(SystemExit):
+                    vid.new_special("wide-explainer")
+                with self.assertRaises(SystemExit):
+                    vid.new_special("Not A Name")
+
+    def test_git_keeps_new_specials_out_of_the_public_repository(self):
+        self.assertIn("/specials/", (vid.ROOT / ".gitignore").read_text(encoding="utf-8").splitlines())
+
+
+class CiTests(unittest.TestCase):
+    def run_ci(self, root: Path, passes: bool) -> int:
+        with (mock.patch.object(special, "SPECIALS", root), mock.patch.object(ci.status, "episodes", return_value=[]),
+              mock.patch.object(special, "check", return_value=passes),
+              mock.patch.object(ci.lint, "run", return_value=True), mock.patch("builtins.print")):
+            return ci.main()
+
+    def test_a_failing_animated_special_fails_ci_and_an_unanimated_one_is_skipped(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            make_special(root, "still-writing")
+            self.assertEqual(self.run_ci(root, passes=False), 0)
+            (make_special(root, "animated") / "scene.py").write_text("", encoding="utf-8")
+            self.assertEqual(self.run_ci(root, passes=False), 1)
+            self.assertEqual(self.run_ci(root, passes=True), 0)
 
 
 if __name__ == "__main__":
